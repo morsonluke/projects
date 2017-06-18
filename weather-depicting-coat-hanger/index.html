@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather Depicting Coat Hanger – Luke Morson – </title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…
+
+" />
+    <meta property="og:description" content="Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…
+
+" />
+    
+    <meta name="author" content="Luke Morson" />
+
+    
+    <meta property="og:title" content="Weather Depicting Coat Hanger" />
+    <meta property="twitter:title" content="Weather Depicting Coat Hanger" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/projects/style.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Luke Morson - " href="/projects/feed.xml" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+
+<!--Ideal Image Slider-->
+<link rel="stylesheet" href="/projects/assets/ideal-image-slider.css">
+<link rel="stylesheet" href="/projects/themes/default/default.css">
+
+<script src="/projects/assets/ideal-image-slider.js"></script>
+
+
+  <body>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="post-heading">
+            <h1>Weather Depicting Coat Hanger</h1>
+            <span class="meta">Posted by <a href="/projects/about"> Luke Morson
+            </a> on April 11, 2017
+            <a href="/projects/"> { Return to Blog }</a>
+            </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+ <div class="space-extra-small">
+ </div>
+
+  <div class="entry">
+    <p>Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…</p>
+
+<h2 id="the-idea">The idea</h2>
+
+<p>My idea for this project came from this <a href="http://www.instructables.com/id/Weather-Forecasting-Coat-Hooks/" target="blank"> this great project</a> which used an Intel Edison.</p>
+
+<p>In my version of this project, I planned to take JSON information from an open weather API and display the current weather by lighting up old Polaroids depicting different weather scenes. The original design would also use servos to display the temperature and relative humidity. In addition to this I planned to set up a web server as a ‘health-checker’ and to display the weather information. The brains behind the project would be a raspberry pi zero.</p>
+
+<div id="slider">
+	<img src="/projects/img/project1.png" />
+	<img src="/projects/img/wphm4.png" />
+	<img src="/projects/img/Project15.png" />
+	<img src="/projects/img/Project11.png" />
+</div>
+
+<h2 id="build">Build</h2>
+
+<p>The main body of the ‘coat hanger’ was made from a varnished peice of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.</p>
+
+<p>The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The polaroids could then be glued to the top of the wood.</p>
+
+<h2 id="raspberry-pi-setup">Raspberry Pi Setup</h2>
+
+<p>To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your wifi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.</p>
+
+<h2 id="electronics">Electronics</h2>
+
+<p>The 5V LEDs strip can be cut along the copper contacts into individual strips. To fit the frames we cut the strip into pieces that were two LEDs long. Cut away the plastic from the end of the strip to expose the copper contact. Heat the copper contact with the soldering iron before applying solder and then soldering the exposed wire to the contact. I would recommend using a small gauge wire here to prevent the contact breaking and it will also allow the wire to be better hidden within the frame.</p>
+
+<p>Each of the -ve wires can be soldered together to make a common ground which is then connected to the -ve pin on the Raspberry Pi and the +ve wires can then be attached to the relevant GPIO pin on the Raspberry Pi as shown below.</p>
+
+<div id="slider3">
+	<img src="/projects/img/Project16.png" />
+	<img src="/projects/img/Schematic.png" />
+	<img src="/projects/img/wphm8.png" />
+	<img src="/projects/img/WiringPi.png" />
+</div>
+
+<h2 id="wiringpi">WiringPi</h2>
+
+<p><em>Tagline</em>: <a href="http://wiringpi.com/download-and-install/" target="blank">WiringPi</a> is a GPIO library written in C for the BCM2835 used in the Raspberry Pi.</p>
+
+<p>Although WiringPi is a C library it includes a command-line utility which can be used to program and setup the GPIO pins and allows for the control of the pins via shell scripts.</p>
+
+<p>Once installed used the gpio utility to test if the WiringPi library has been installed using the command line.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gpio -v //this gives the version
+
+gpio readall //this should print the information below</code></pre></figure>
+
+<p>We can test our first Polaroid image at wPi pin 0 (GPIO 17 as can be seen above) by first setting pin 0 as an output and then setting the pin to a logic 1. You can then turn it off by setting it back to 0.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gpio mode 0 out
+gpio write 0 1
+gpio write 0 0
+
+//To use the GPIO pins instead of the wPi pins use the -g flag.
+
+ggio -g mode 17 out
+gpio -g write 17 1
+gpio -g write 17 0</code></pre></figure>
+
+<p>I also used <a href="http://www.instructables.com/id/Simple-and-intuitive-web-interface-for-your-Raspbe/" target="blank">this great instructable</a> to create a test interface during the project so I could easily test the status of the different LEDs during the build using a great simple web interface. There’s a lot of great information in there and this simple interface could be used to control a range of things using the Pi.</p>
+
+<h2 id="web-server">Web Server</h2>
+
+<p>In order to interact with the weather monitor and get information from the open weather API we need a web server. We don’t need the full traditional LAMP stack and can do away with the MySQL portion and just <b>LAP</b> away. The Raspberry Pi will give us the <b>L</b>inux and so we need to download the <b>A</b>pache server and <b>P</b>HP portion.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">//install HTTP server and php
+sudo apt-get update
+sudo apt-get install apache2 php5 libapache2-mod-php5</code></pre></figure>
+
+<p>The root of the folder of the web server is /var/www/html/. If you navigate to your Raspberry Pi IP address from another device on the network you should see the default page that comes with the installation.</p>
+
+<p>The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual polaroids.</p>
+
+<div id="slider2">
+	<img src="/projects/img/wphm5.png" />
+	<img src="/projects/img/wphm6.png" />
+</div>
+
+<h2 id="json">JSON</h2>
+
+<p>OpenWeatherMap comes with an API that allows you to access current weather data in JSON, XML and HTML formats. To get this information you make a simple API call. This is a free service and only requires that you sign up to get you own API key. A range of parameters can be used as part of the API call. To get the current weather information you make the following call with your own API key:</p>
+
+<p>http://api.openweathermap.org/data/2.5/weather?zip={zipcode},{city}&amp;units=metric&amp;APPID={API key}</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">//Example</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">returned</span><span class="w">
+</span><span class="p">{</span><span class="w">  
+   </span><span class="nt">"weather"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">800</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"main"</span><span class="p">:</span><span class="s2">"Clear"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"clear sky"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"icon"</span><span class="p">:</span><span class="s2">"01d"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"base"</span><span class="p">:</span><span class="s2">"stations"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"main"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"temp"</span><span class="p">:</span><span class="mf">1.68</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"pressure"</span><span class="p">:</span><span class="mi">1022</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"humidity"</span><span class="p">:</span><span class="mi">64</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"temp_min"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"temp_max"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<h1>PHP Script</h1>
+
+<p>The script below will initially set all the outputs to 0 then scrolls through the different images, lighting them up at one second intervals. It then grabs the current weather information from the API, applies some very basic logic to decided which polaroid weather representations to light up, before calling a system call using the wiringPi library. The logic is very basic but you get the idea.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="c1">//Set all pins to off
+</span><span class="k">for</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$x</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">;</span> <span class="nv">$x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio mode </span><span class="nv">$x</span><span class="s2"> out"</span><span class="p">);</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write </span><span class="nv">$x</span><span class="s2"> 0"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//scroll through pins
+</span><span class="k">for</span><span class="p">(</span><span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$x</span> <span class="o">&lt;=</span><span class="mi">6</span><span class="p">;</span> <span class="nv">$x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write </span><span class="nv">$x</span><span class="s2"> 1"</span><span class="p">);</span>
+        <span class="nb">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write </span><span class="nv">$x</span><span class="s2"> 0"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//get the current weather information
+</span><span class="nv">$jsonurl</span> <span class="o">=</span> <span class="s2">"http://api.openweathermap.org/data/2.5/weather?q=Toronto&amp;units=metric&amp;APPID=</span><span class="si">{</span><span class="nv">APIKEY</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="nv">$json</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$jsonurl</span><span class="p">);</span>
+<span class="c1">//Takes on a JSON encoded string and turns it into a PHP variable.
+</span><span class="nv">$weather</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span>
+<span class="nv">$station</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="nv">$wind</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">wind</span><span class="o">-&gt;</span><span class="na">speed</span><span class="p">;</span>
+<span class="nv">$tempC</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">main</span><span class="o">-&gt;</span><span class="na">temp</span><span class="p">;</span>
+<span class="nv">$tempmin</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">main</span><span class="o">-&gt;</span><span class="na">temp_min</span><span class="p">;</span>
+<span class="nv">$tempmax</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">main</span><span class="o">-&gt;</span><span class="na">temp_max</span><span class="p">;</span>
+<span class="nv">$pressureC</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">main</span><span class="o">-&gt;</span><span class="na">pressure</span><span class="p">;</span>
+<span class="nv">$descriptionC</span> <span class="o">=</span> <span class="nv">$weather</span><span class="o">-&gt;</span><span class="na">weather</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">description</span><span class="p">;</span>
+
+<span class="c1">//Check to see if description is rain and light pin 4
+</span><span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$descriptionC</span><span class="p">,</span><span class="s1">'rain'</span><span class="p">)</span><span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 4 1"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Check to see if description is cloud and light pin 0
+</span><span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$descriptionC</span><span class="p">,</span><span class="s1">'clouds'</span><span class="p">)</span><span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 0 1"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$tempC</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="nv">$tempC</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 2 1"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Check to see if temperature is &gt; 20 degC light pin 3
+</span><span class="k">if</span> <span class="p">(</span><span class="nv">$tempC</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 3 1"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Check to see if temperature is between 0 and 10 and light pin 1
+</span><span class="k">if</span> <span class="p">(</span><span class="nv">$tempC</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nv">$tempC</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 1 1"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Check to see if description is like snow and light pin 6
+</span><span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$descriptionC</span><span class="p">,</span><span class="s1">'snow'</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 6 1"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$tempC</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 6 1"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="c1">//if the description is clear sky then light pin 5
+</span><span class="k">if</span> <span class="p">(</span><span class="nv">$descriptionC</span> <span class="o">==</span> <span class="s1">'clear sky'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">System</span><span class="p">(</span><span class="s2">"gpio write 5 1"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span></code></pre></figure>
+
+<h2 id="cron">CRON</h2>
+
+<p>As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root foler of my web server.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">//Check the following command works on the command line first to make sure the script runs
+/usr/bin/php /var/www/html/scroll.php
+
+//Make the php file executable
+chomd +x /var/www/html/scroll.php
+
+//update crontab
+crontab -e
+
+--&gt; run the script every minute
+* * * * * /usr/bin/php  /var/www/html/scroll.php
+
+→ this can later be change to every 5 minutes or so or to whatever interval you need
+5 * * * * /usr/bin/php  /var/www/html/scroll.php</code></pre></figure>
+
+<h2 id="improvements">Improvements</h2>
+
+<p>In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.</p>
+
+<!--Create Ideal Image Slider-->
+<script type="text/javascript">
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider',
+	height: 500,
+	interval: 10000,
+	effect: 'fade'
+});
+slider.start();
+
+</script>
+
+<!--Create Second Ideal Image Slider-->
+<script type="text/javascript">
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider2',
+	height: 500,
+	interval: 10000,
+  effect: 'fade'
+});
+slider.start();
+
+</script>
+
+<!--Create Third Ideal Image Slider-->
+<script type="text/javascript">
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider3',
+	height: 500,
+	interval: 10000,
+  effect: 'fade'
+});
+slider.start();
+
+</script>
+
+
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'morsonluke';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+            <div class="svg-icon">
+          
+<a href="mailto:morsonluke@gmail.com"><i class="icon-envelope icon-2x"></i></a>
+
+
+
+
+<a href="https://www.linkedin.com/in/luke-morson-51718692"><i class="icon-linkedin-sign icon-2x"></i></a>
+
+
+
+
+
+
+
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    
+
+
+  </body>
+</html>
