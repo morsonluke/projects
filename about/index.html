@@ -77,7 +77,15 @@
     </div>
 
     <div id="main" role="main" class="container">
-      <article class="page">
+      <head>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="..//projects/assets/badges.css">
+<script src="..//projects/assets/reportcard.js"></script>
+
+</head>
+
+<article class="page">
 
   <h1>About</h1>
 
@@ -97,6 +105,17 @@
 </ul>
 
   </div>
+
+<div class="report-card treehouse"></div>
+
+<script>
+$('.report-card.treehouse').reportCard({
+    userName: 'lukemorson',
+    site: 'treehouse',
+    badgesAmount: 7
+});
+</script>
+
 </article>
 
     </div>
