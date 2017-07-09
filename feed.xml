@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-06-21T18:19:41-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-09T17:33:13-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Jekyll is a static site generator that is powered by Ruby. You lob in a bit of markdown, liquid, HTML, CSS and out comes a static site ready for deployment.&lt;/p&gt;
+
+&lt;p&gt;For a content-driven site like this, Jekyll is ideal. It is simple, lightweight, comes with a development server for testing and can be hosted for FREE on Github.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing Jekyll on Windows&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the ruby installer for &lt;a href=&quot;https://rubyinstaller.org/downloads/&quot; target=&quot;blank&quot;&gt; Windows&lt;/a&gt;. Ensure to add Ruby executables to the PATH option as part of the installer.&lt;/li&gt;
+  &lt;li&gt;Install the Ruby DevKit to match the version of Ruby installed. Enter a path for the file without spaces like C:\RubyDevKit&lt;/li&gt;
+  &lt;li&gt;Open the “command prompt” with Ruby.&lt;/li&gt;
+  &lt;li&gt;Initialize the DevKit and bind it to the Ruby installation and install Jekyll.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;Cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;C:\RubyDevKit&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;DevKit.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;dk.rb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;dk.rb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyll.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Jekyll&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Building a Jekyll Site&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can quickly build a basic Jekyll site and view it using the local server, which comes as part of Jekyll.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyllExample&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyllExample&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;serve&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Navigating to &lt;code&gt;http://localhost:4000&lt;/code&gt;, you can see the example site that Jekyll ships with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/jekyll1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Rather than build something from scratch I decided to go with a &lt;a href=&quot;http://jekyllthemes.org/&quot; target=&quot;blank&quot;&gt;template&lt;/a&gt;. The template I am using was from &lt;a href=&quot;https://github.com/AkshayAgarwal007/Jekyll-Mono&quot; target=&quot;blank&quot;&gt; Askhay Agarwal.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Modifying an existing template allowed me to get the site up and running quickly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Adding to GitHub&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Your Jekyll site can be hosted for FREE on GitHub. GitHub Pages are public web pages that are freely hosted on Github’s &lt;code&gt;github.io&lt;/code&gt; domain. GitHub pages are actually powered by Jekyll.&lt;/p&gt;
+
+&lt;p&gt;To host the site at a project repository on GitHub pages you can define the “baseurl” as the “/repository-name/” in the config.yml file. When referencing JS or CSS files it needs to be done in the form:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;site.baseurl&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}/path/to/css.css.&amp;lt;/code&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Any internal links are then done like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;site.baseurl&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post.url&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;When running &lt;code&gt;jekyll serve&lt;/code&gt; you will notice that the site builds with the “/repository-name” as the baseurl. If you try and the view the site locally, it will likely fail. To test the site locally, you can serve the site with an empty string as the “baseurl” option as &lt;code&gt; jekyll serve  --baseurl ''&lt;/code&gt;. When deploying to GitHub pages the URLs will all start with the /repository-name-name and resolve correctly.&lt;/p&gt;
+
+&lt;p&gt;To actually sync the files with GitHub I used the GitHub Desktop app for Windows.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Click the &lt;b&gt;+&lt;/b&gt; icon and select the &lt;b&gt;Add&lt;/b&gt; option. Select the site folder from your Jekyll site and give it the name of your “/repository-name”.&lt;/li&gt;
+  &lt;li&gt;“Create &amp;amp; Add Repository” and make the first commit of the master.&lt;/li&gt;
+  &lt;li&gt;Create a branch called &lt;b&gt;gh-pages&lt;/b&gt; and commit and publish.&lt;/li&gt;
+  &lt;li&gt;The site is at {username}.github.io/{repo-name}.&lt;/li&gt;
+  &lt;li&gt;In the future any changes to the site just need to be committed and synced to update your website.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 

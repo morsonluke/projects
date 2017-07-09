@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Building a site with Jekyll – Luke Morson – </title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="A short guide to getting started with Jekyll…
+
+" />
+    <meta property="og:description" content="A short guide to getting started with Jekyll…
+
+" />
+    
+    <meta name="author" content="Luke Morson" />
+
+    
+    <meta property="og:title" content="Building a site with Jekyll" />
+    <meta property="twitter:title" content="Building a site with Jekyll" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/projects/style.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Luke Morson - " href="/projects/feed.xml" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+
+<!--Ideal Image Slider-->
+<link rel="stylesheet" href="/projects/assets/ideal-image-slider.css">
+<link rel="stylesheet" href="/projects/themes/default/default.css">
+
+<script src="/projects/assets/ideal-image-slider.js"></script>
+
+
+  <body>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="post-heading">
+            <h1>Building a site with Jekyll</h1>
+            <span class="meta">Posted by <a href="/projects/about"> Luke Morson
+            </a> on July  9, 2017
+            <a href="/projects/"> { Return to Blog }</a>
+            </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+ <div class="space-extra-small">
+ </div>
+
+  <div class="entry">
+    <p>A short guide to getting started with Jekyll…</p>
+
+<p><strong>Jekyll</strong></p>
+
+<p>Jekyll is a static site generator that is powered by Ruby. You lob in a bit of markdown, liquid, HTML, CSS and out comes a static site ready for deployment.</p>
+
+<p>For a content-driven site like this, Jekyll is ideal. It is simple, lightweight, comes with a development server for testing and can be hosted for FREE on Github.</p>
+
+<p><strong>Installing Jekyll on Windows</strong></p>
+
+<ol>
+  <li>Download the ruby installer for <a href="https://rubyinstaller.org/downloads/" target="blank"> Windows</a>. Ensure to add Ruby executables to the PATH option as part of the installer.</li>
+  <li>Install the Ruby DevKit to match the version of Ruby installed. Enter a path for the file without spaces like C:\RubyDevKit</li>
+  <li>Open the “command prompt” with Ruby.</li>
+  <li>Initialize the DevKit and bind it to the Ruby installation and install Jekyll.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">Cd</span><span class="w"> </span><span class="err">C:\RubyDevKit</span><span class="w"> </span><span class="err">//path</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">ruby</span><span class="w"> </span><span class="err">DevKit.</span><span class="w">
+</span><span class="err">Ruby</span><span class="w"> </span><span class="err">dk.rb</span><span class="w"> </span><span class="err">init</span><span class="w">
+</span><span class="err">Ruby</span><span class="w"> </span><span class="err">dk.rb</span><span class="w"> </span><span class="err">install</span><span class="w">
+</span><span class="err">gem</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">jekyll.</span><span class="w"> </span><span class="err">//install</span><span class="w"> </span><span class="err">Jekyll</span></code></pre></figure>
+
+<p><strong>Building a Jekyll Site</strong></p>
+
+<p>You can quickly build a basic Jekyll site and view it using the local server, which comes as part of Jekyll.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">jekyll</span><span class="w"> </span><span class="err">new</span><span class="w"> </span><span class="err">jekyllExample</span><span class="w">
+</span><span class="err">cd</span><span class="w"> </span><span class="err">jekyllExample</span><span class="w">
+</span><span class="err">jekyll</span><span class="w"> </span><span class="err">serve</span></code></pre></figure>
+
+<p>Navigating to <code>http://localhost:4000</code>, you can see the example site that Jekyll ships with.</p>
+
+<p><img src="/img/jekyll1.png" /></p>
+
+<p>Rather than build something from scratch I decided to go with a <a href="http://jekyllthemes.org/" target="blank">template</a>. The template I am using was from <a href="https://github.com/AkshayAgarwal007/Jekyll-Mono" target="blank"> Askhay Agarwal.</a></p>
+
+<p>Modifying an existing template allowed me to get the site up and running quickly.</p>
+
+<p><strong>Adding to GitHub</strong></p>
+
+<p>Your Jekyll site can be hosted for FREE on GitHub. GitHub Pages are public web pages that are freely hosted on Github’s <code>github.io</code> domain. GitHub pages are actually powered by Jekyll.</p>
+
+<p>To host the site at a project repository on GitHub pages you can define the “baseurl” as the “/repository-name/” in the config.yml file. When referencing JS or CSS files it needs to be done in the form:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.baseurl</span><span class="w"> </span><span class="p">}</span><span class="err">}/path/to/css.css.&lt;/code&gt;</span></code></pre></figure>
+
+<p>Any internal links are then done like this:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.baseurl</span><span class="w"> </span><span class="p">}</span><span class="err">}</span><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">post.url</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code></pre></figure>
+
+<p>When running <code>jekyll serve</code> you will notice that the site builds with the “/repository-name” as the baseurl. If you try and the view the site locally, it will likely fail. To test the site locally, you can serve the site with an empty string as the “baseurl” option as <code> jekyll serve  --baseurl ''</code>. When deploying to GitHub pages the URLs will all start with the /repository-name-name and resolve correctly.</p>
+
+<p>To actually sync the files with GitHub I used the GitHub Desktop app for Windows.</p>
+
+<ol>
+  <li>Click the <b>+</b> icon and select the <b>Add</b> option. Select the site folder from your Jekyll site and give it the name of your “/repository-name”.</li>
+  <li>“Create &amp; Add Repository” and make the first commit of the master.</li>
+  <li>Create a branch called <b>gh-pages</b> and commit and publish.</li>
+  <li>The site is at {username}.github.io/{repo-name}.</li>
+  <li>In the future any changes to the site just need to be committed and synced to update your website.</li>
+</ol>
+
+<p><br /></p>
+
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'morsonluke';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+            <div class="svg-icon">
+          
+<a href="mailto:morsonlukedevelopment@gmail.com"><i class="icon-envelope icon-2x"></i></a>
+
+
+
+
+<a href="https://www.linkedin.com/in/luke-morson-51718692"><i class="icon-linkedin-sign icon-2x"></i></a>
+
+
+
+
+
+
+
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    
+
+
+  </body>
+</html>
