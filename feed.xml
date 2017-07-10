@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="/projects/" rel="alternate" type="text/html" /><updated>2017-07-09T18:36:08-04:00</updated><id>/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a site with Jekyll</title><link href="/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>/projects/jekyll</id><content type="html" xml:base="/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-09T20:05:57-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
 
@@ -30,7 +30,7 @@
 
 &lt;p&gt;Navigating to &lt;code&gt;http://localhost:4000&lt;/code&gt;, you can see the example site that Jekyll ships with.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/projects/img/jekyll1.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/projects/img/Jekyll1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Rather than build something from scratch I decided to go with a &lt;a href=&quot;http://jekyllthemes.org/&quot; target=&quot;blank&quot;&gt;template&lt;/a&gt;. The template I am using was from &lt;a href=&quot;https://github.com/AkshayAgarwal007/Jekyll-Mono&quot; target=&quot;blank&quot;&gt; Askhay Agarwal.&lt;/a&gt;&lt;/p&gt;
 
@@ -60,7 +60,7 @@
   &lt;li&gt;In the future any changes to the site just need to be committed and synced to update your website.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 

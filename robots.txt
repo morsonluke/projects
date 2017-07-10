@@ -1,1 +1,1 @@
-Sitemap: /projects/sitemap.xml
+Sitemap: http://localhost:4000/projects/sitemap.xml
