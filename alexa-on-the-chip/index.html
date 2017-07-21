@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Amazon Alexa on the C.H.I.P – Luke Morson – </title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Running Amazon Alexa on the C.H.I.P
+
+" />
+    <meta property="og:description" content="Running Amazon Alexa on the C.H.I.P
+
+" />
+    
+    <meta name="author" content="Luke Morson" />
+
+    
+    <meta property="og:title" content="Amazon Alexa on the C.H.I.P" />
+    <meta property="twitter:title" content="Amazon Alexa on the C.H.I.P" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/projects/style.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Luke Morson - " href="/projects/feed.xml" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+
+<!--Ideal Image Slider-->
+<link rel="stylesheet" href="/projects/assets/ideal-image-slider.css">
+<link rel="stylesheet" href="/projects/themes/default/default.css">
+
+<script src="/projects/assets/ideal-image-slider.js"></script>
+
+
+  <body>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="post-heading">
+            <h1>Amazon Alexa on the C.H.I.P</h1>
+            <span class="meta">Posted by <a href="/projects/about"> Luke Morson
+            </a> on July 18, 2017
+            <a href="/projects/"> { Return to Blog }</a>
+            </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+ <div class="space-extra-small">
+ </div>
+
+  <div class="entry">
+    <p>Running Amazon Alexa on the C.H.I.P</p>
+
+<p><img src="/img/CHIP2.png" /></p>
+
+<h2 id="what-is-the-chip">What is the C.H.I.P</h2>
+
+<p>CHIP is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really <a href="https://getchip.com/pages/dashbot" target="blank">interesting project.</a></p>
+
+<h2 id="required-for-this-project">Required for this project</h2>
+
+<ol>
+  <li>C.H.I.P</li>
+  <li>HDMI “shield” for C.H.I.P. This allows you to connect to a HDMI. This is actually more expensive than the C.H.I.P itself…</li>
+  <li>Power supply with MicroUSB cable.</li>
+  <li>HDMI cable, mouse, keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.</li>
+  <li>Small batter powered speaker</li>
+  <li>USB microphone.</li>
+</ol>
+
+<h2 id="setting-up-the-chip">Setting up the C.H.I.P</h2>
+
+<p>The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.</p>
+
+<p>With the computer still attached to the TV, trying a simple <code>sudo apt-get update</code> crashed it. It also seemed the the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">update</span><span class="w">
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">upgrade</span><span class="w">
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">tightvncserver</span><span class="w">
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">vncserver</span><span class="w"> </span><span class="err">//the</span><span class="w"> </span><span class="err">first</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">run</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">VNC</span><span class="w"> </span><span class="err">password</span></code></pre></figure>
+
+<h2 id="registering-for-an-amazon-developer-account">Registering for an Amazon Developer Account</h2>
+
+<ol>
+  <li>Firstly we need to know the IP address so go for <code>ip addr show wlan0</code> and make a note of the IP address.</li>
+  <li>Create an amazon developer account at https://developer.amazon.com and go to the <b>Alexa</b> tab and <b>Get Started for Alexa Voice Service</b>.</li>
+  <li>Register a device and enter a memorable <b>Device ID</b> and <b>Display Name</b>.</li>
+  <li>Edit the <b>Security Profile</b> and <b>Create New Profile</b> and add a <b>Security Profile Description</b>. Take a note of the <b>Security Profile ID</b>, <b>Client ID</b> and <b>Client Secret</b> as they will be needed later.</li>
+  <li>Next go to Web Seettings and under Allowed Origins we need to set add <code>http://localhost:5050</code>. <b>Add Another</b> and add <code>http://ip.address:5050</code> but replace the IP address with that of your device. Do the same for <b>Allowed Return URLs</b> adding <code>http://localhost:5050/code and then <code>http://ip.address:5050/code.</code>.</code></li>
+</ol>
+
+<h2 id="installing-alexa-services">Installing Alexa Services</h2>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">git</span><span class="w"> </span><span class="err">//git</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">required</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">github.</span><span class="w">
+</span><span class="err">cd</span><span class="w"> </span><span class="err">/opt</span><span class="w"> </span><span class="err">//change</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">working</span><span class="w"> </span><span class="err">directory</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">opt.</span><span class="w">
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">git</span><span class="w"> </span><span class="err">clone</span><span class="w"> </span><span class="err">https://github.com/alexa-pi/AlexaPi.git</span><span class="w">
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">./AlexaPi/src/scripts/setup.sh</span><span class="w"> </span><span class="err">/the</span><span class="w"> </span><span class="err">device</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">here</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">chip</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">OS</span><span class="w"> </span><span class="err">Debian.</span></code></pre></figure>
+
+<p>Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret <b>very carefully</b>, any errors in copying them over could cause the script not to work. Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the CHIP navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>The heavily lifting here is done by Amazon’s Alexa Voice Service (AVS). Your Amazon AVS credentials are stored in the configuration file config.yaml. The auth_web.py is then a simple web server to generate the refresh token via OAuth to your Amazon user account.</p>
+
+<p>main.py is then the main AVS client which waits for the trigger word “Alexa”, or the button to be pressed. It records the audio and posts this to the AVS service using the requests library. The AVS then does some magic and sends back the response which is played back to you.</p>
+
+<h2 id="to-be-continued">To be continued…</h2>
+
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'morsonluke';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+            <div class="svg-icon">
+          
+<a href="mailto:morsonlukedevelopment@gmail.com"><i class="icon-envelope icon-2x"></i></a>
+
+
+
+
+<a href="https://www.linkedin.com/in/luke-morson-51718692"><i class="icon-linkedin-sign icon-2x"></i></a>
+
+
+
+
+
+
+
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    
+
+
+  </body>
+</html>
