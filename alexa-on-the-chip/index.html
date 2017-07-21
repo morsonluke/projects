@@ -9,10 +9,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
     
-    <meta name="description" content="Running Amazon Alexa on the C.H.I.P
+    <meta name="description" content="Running Amazon Alexa on the C.H.I.P…
 
 " />
-    <meta property="og:description" content="Running Amazon Alexa on the C.H.I.P
+    <meta property="og:description" content="Running Amazon Alexa on the C.H.I.P…
 
 " />
     
@@ -62,7 +62,7 @@
  </div>
 
   <div class="entry">
-    <p>Running Amazon Alexa on the C.H.I.P</p>
+    <p>Running Amazon Alexa on the C.H.I.P…</p>
 
 <p><img src="/projects/img/CHIP2.png" /></p>
 
@@ -95,11 +95,11 @@
 <h2 id="registering-for-an-amazon-developer-account">Registering for an Amazon Developer Account</h2>
 
 <ol>
-  <li>Firstly we need to know the IP address so go for <code>ip addr show wlan0</code> and make a note of the IP address.</li>
+  <li>Firstly we need to know the IP address so go for <code>ip addr show wlan0</code>, and make a note of the IP address.</li>
   <li>Create an amazon developer account at https://developer.amazon.com and go to the <b>Alexa</b> tab and <b>Get Started for Alexa Voice Service</b>.</li>
   <li>Register a device and enter a memorable <b>Device ID</b> and <b>Display Name</b>.</li>
   <li>Edit the <b>Security Profile</b> and <b>Create New Profile</b> and add a <b>Security Profile Description</b>. Take a note of the <b>Security Profile ID</b>, <b>Client ID</b> and <b>Client Secret</b> as they will be needed later.</li>
-  <li>Next go to Web Settings and under Allowed Origins we need to set add <code>http://localhost:5050</code>. <b>Add Another</b> and add <code>http://ip.address:5050</code> but replace the IP address with that of your device. Do the same for <b>Allowed Return URLs</b> adding <code>http://localhost:5050/code and then <code>http://ip.address:5050/code.</code>.</code></li>
+  <li>Next go to Web Settings and under Allowed Origins we need to add <code>http://localhost:5050</code>. <b>Add Another</b> and add <code>http://ip.address:5050</code> but replace the IP address with that of your device. Do the same for <b>Allowed Return URLs</b> adding <code>http://localhost:5050/code and then <code>http://ip.address:5050/code.</code></code></li>
 </ol>
 
 <h2 id="installing-alexa-services">Installing Alexa Services</h2>
@@ -109,7 +109,9 @@
 </span><span class="err">sudo</span><span class="w"> </span><span class="err">git</span><span class="w"> </span><span class="err">clone</span><span class="w"> </span><span class="err">https://github.com/alexa-pi/AlexaPi.git</span><span class="w">
 </span><span class="err">sudo</span><span class="w"> </span><span class="err">./AlexaPi/src/scripts/setup.sh</span><span class="w"> </span><span class="err">/the</span><span class="w"> </span><span class="err">device</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">here</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">chip</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">OS</span><span class="w"> </span><span class="err">Debian.</span></code></pre></figure>
 
-<p>Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret <b>very carefully</b>, any errors in copying them over could cause the script not to work. Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the CHIP navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.</p>
+<p>Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret <b>very carefully</b>, any errors in copying them over could cause the script not to work.</p>
+
+<p>Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.</p>
 
 <h2 id="how-does-it-work">How does it work?</h2>
 
@@ -117,7 +119,27 @@
 
 <p>main.py is then the main AVS client which waits for the trigger word “Alexa”, or the button to be pressed. It records the audio and posts this to the AVS service using the requests library. The AVS then does some magic and sends back the response which is played back to you.</p>
 
+<div id="slider">
+	<img src="/projects/img/radio.png" />
+	<img src="/projects/img/speaker1.png" />
+	<img src="/projects/img/speaker2.png" />
+</div>
+
 <h2 id="to-be-continued">To be continued…</h2>
+
+<!--Create Ideal Image Slider-->
+<script type="text/javascript">
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider',
+	height: 500,
+	interval: 10000,
+	effect: 'fade'
+});
+slider.start();
+
+</script>
+
 
   </div>
 

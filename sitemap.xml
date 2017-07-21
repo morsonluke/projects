@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/projects/weather-depicting-coat-hanger/</loc>
+<loc>http://localhost:4000/projects/weather-depicting-coat-hanger/</loc>
 <lastmod>2017-04-11T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>/projects/jekyll/</loc>
+<loc>http://localhost:4000/projects/jekyll/</loc>
 <lastmod>2017-07-09T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>/projects/alexa-on-the-chip/</loc>
+<loc>http://localhost:4000/projects/alexa-on-the-chip/</loc>
 <lastmod>2017-07-18T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>/projects/404/</loc>
+<loc>http://localhost:4000/projects/404/</loc>
 </url>
 <url>
-<loc>/projects/about/</loc>
+<loc>http://localhost:4000/projects/about/</loc>
 </url>
 <url>
-<loc>/projects/</loc>
+<loc>http://localhost:4000/projects/</loc>
 </url>
 </urlset>

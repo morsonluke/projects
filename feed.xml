@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="/projects/" rel="alternate" type="text/html" /><updated>2017-07-21T09:43:53-04:00</updated><id>/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>/projects/alexa-on-the-chip</id><content type="html" xml:base="/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-21T17:26:50-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/CHIP2.png&quot; /&gt;&lt;/p&gt;
 
@@ -31,11 +31,11 @@
 &lt;h2 id=&quot;registering-for-an-amazon-developer-account&quot;&gt;Registering for an Amazon Developer Account&lt;/h2&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Firstly we need to know the IP address so go for &lt;code&gt;ip addr show wlan0&lt;/code&gt; and make a note of the IP address.&lt;/li&gt;
+  &lt;li&gt;Firstly we need to know the IP address so go for &lt;code&gt;ip addr show wlan0&lt;/code&gt;, and make a note of the IP address.&lt;/li&gt;
   &lt;li&gt;Create an amazon developer account at https://developer.amazon.com and go to the &lt;b&gt;Alexa&lt;/b&gt; tab and &lt;b&gt;Get Started for Alexa Voice Service&lt;/b&gt;.&lt;/li&gt;
   &lt;li&gt;Register a device and enter a memorable &lt;b&gt;Device ID&lt;/b&gt; and &lt;b&gt;Display Name&lt;/b&gt;.&lt;/li&gt;
   &lt;li&gt;Edit the &lt;b&gt;Security Profile&lt;/b&gt; and &lt;b&gt;Create New Profile&lt;/b&gt; and add a &lt;b&gt;Security Profile Description&lt;/b&gt;. Take a note of the &lt;b&gt;Security Profile ID&lt;/b&gt;, &lt;b&gt;Client ID&lt;/b&gt; and &lt;b&gt;Client Secret&lt;/b&gt; as they will be needed later.&lt;/li&gt;
-  &lt;li&gt;Next go to Web Settings and under Allowed Origins we need to set add &lt;code&gt;http://localhost:5050&lt;/code&gt;. &lt;b&gt;Add Another&lt;/b&gt; and add &lt;code&gt;http://ip.address:5050&lt;/code&gt; but replace the IP address with that of your device. Do the same for &lt;b&gt;Allowed Return URLs&lt;/b&gt; adding &lt;code&gt;http://localhost:5050/code and then &lt;code&gt;http://ip.address:5050/code.&lt;/code&gt;.&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Next go to Web Settings and under Allowed Origins we need to add &lt;code&gt;http://localhost:5050&lt;/code&gt;. &lt;b&gt;Add Another&lt;/b&gt; and add &lt;code&gt;http://ip.address:5050&lt;/code&gt; but replace the IP address with that of your device. Do the same for &lt;b&gt;Allowed Return URLs&lt;/b&gt; adding &lt;code&gt;http://localhost:5050/code and then &lt;code&gt;http://ip.address:5050/code.&lt;/code&gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;installing-alexa-services&quot;&gt;Installing Alexa Services&lt;/h2&gt;
@@ -45,7 +45,9 @@
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;https://github.com/alexa-pi/AlexaPi.git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;./AlexaPi/src/scripts/setup.sh&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;here&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;chip&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Debian.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret &lt;b&gt;very carefully&lt;/b&gt;, any errors in copying them over could cause the script not to work. Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the CHIP navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.&lt;/p&gt;
+&lt;p&gt;Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret &lt;b&gt;very carefully&lt;/b&gt;, any errors in copying them over could cause the script not to work.&lt;/p&gt;
+
+&lt;p&gt;Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
 
@@ -53,7 +55,26 @@
 
 &lt;p&gt;main.py is then the main AVS client which waits for the trigger word “Alexa”, or the button to be pressed. It records the audio and posts this to the AVS service using the requests library. The AVS then does some magic and sends back the response which is played back to you.&lt;/p&gt;
 
-&lt;h2 id=&quot;to-be-continued&quot;&gt;To be continued…&lt;/h2&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>/projects/jekyll</id><content type="html" xml:base="/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+&lt;div id=&quot;slider&quot;&gt;
+	&lt;img src=&quot;/projects/img/radio.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker1.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker2.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;to-be-continued&quot;&gt;To be continued…&lt;/h2&gt;
+
+&lt;!--Create Ideal Image Slider--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider',
+	height: 500,
+	interval: 10000,
+	effect: 'fade'
+});
+slider.start();
+
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
 
@@ -115,7 +136,7 @@
   &lt;li&gt;In the future any changes to the site just need to be committed and synced to update your website.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 
