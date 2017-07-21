@@ -1,18 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-21T17:26:50-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-21T19:22:33-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
+
+&lt;h2 id=&quot;why-not-just-buy-a-kit&quot;&gt;Why not just buy a kit?&lt;/h2&gt;
+
+&lt;p&gt;True, full 3D printer kits are becoming cheaper and more readily available.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.kickstarter.com/projects/101hero/101hero-the-world-first-us49-3d-printer&quot; target=&quot;blank&quot;&gt;101Hero&lt;/a&gt; was a recent Kickstarter project declaring itself to be the world’s most affordable 3D printer. These cheaper kits do come with some shortfalls, as you can read in &lt;a href=&quot;http://www.instructables.com/id/101hero-a-99-3D-Printer-an-Upgrade-Story-to-Make-I/&quot; target=&quot;blank&quot;&gt;this&lt;/a&gt; great upgrade story about the 101hero.&lt;/p&gt;
+
+&lt;p&gt;There are also a range of open source projects out there with all the information to build one from scratch. The main advantages to building one yourself are that you understand completely how it all works. It also seems like some of the cheaper kits out there sacrifice somewhat on precision.&lt;/p&gt;
+
+&lt;h2 id=&quot;prusa-medel-i2&quot;&gt;Prusa Medel i2&lt;/h2&gt;
+
+&lt;p&gt;The main reason I decided to build the Prusa Mendel i2, was due to the fact that there are a lot of great resources out there for helping you put it together. All the parts can easily got online of from a hardware store.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Prusa Medel is controlled by an Arduino MEGA with a RepRap Arduino Mega Pololu shield or &lt;strong&gt;RAMPS&lt;/strong&gt;. The Pololu are the stepper motor controllers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/CHIP2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;what-is-the-chip&quot;&gt;What is the C.H.I.P&lt;/h2&gt;
 
-&lt;p&gt;CHIP is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really &lt;a href=&quot;https://getchip.com/pages/dashbot&quot; target=&quot;blank&quot;&gt;interesting project.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;C.H.I.P is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really &lt;a href=&quot;https://getchip.com/pages/dashbot&quot; target=&quot;blank&quot;&gt;interesting project.&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;required-for-this-project&quot;&gt;Required for this project&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;C.H.I.P&lt;/li&gt;
-  &lt;li&gt;HDMI “shield” for C.H.I.P. This allows you to connect to a HDMI. This is actually more expensive than the C.H.I.P itself…&lt;/li&gt;
+  &lt;li&gt;HDMI “shield” for the C.H.I.P.&lt;/li&gt;
   &lt;li&gt;Power supply with MicroUSB cable.&lt;/li&gt;
-  &lt;li&gt;HDMI cable, mouse, keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.&lt;/li&gt;
+  &lt;li&gt;HDMI cable, mouse and keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.&lt;/li&gt;
   &lt;li&gt;Small batter powered speaker&lt;/li&gt;
   &lt;li&gt;USB microphone.&lt;/li&gt;
 &lt;/ol&gt;
@@ -21,7 +39,7 @@
 
 &lt;p&gt;The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.&lt;/p&gt;
 
-&lt;p&gt;With the computer still attached to the TV, trying a simple &lt;code&gt;sudo apt-get update&lt;/code&gt; crashed it. It also seemed the the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.&lt;/p&gt;
+&lt;p&gt;With the computer still attached to the TV, trying a simple &lt;code&gt;sudo apt-get update&lt;/code&gt; crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;upgrade&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -43,11 +61,11 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;github.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/opt&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//change&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;working&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;opt.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;https://github.com/alexa-pi/AlexaPi.git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;./AlexaPi/src/scripts/setup.sh&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;here&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;chip&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Debian.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;./AlexaPi/src/scripts/setup.sh&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;here&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;chip&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Debian.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret &lt;b&gt;very carefully&lt;/b&gt;, any errors in copying them over could cause the script not to work.&lt;/p&gt;
 
-&lt;p&gt;Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.&lt;/p&gt;
+&lt;p&gt;Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
 
@@ -61,7 +79,15 @@
 	&lt;img src=&quot;/projects/img/speaker2.png&quot; /&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;to-be-continued&quot;&gt;To be continued…&lt;/h2&gt;
+&lt;h2 id=&quot;setting-up-pulseaudio&quot;&gt;Setting up PulseAudio&lt;/h2&gt;
+
+&lt;p&gt;PulseAudio is a s a proxy for your sound applications. It allows you to do advanced operations on your sound data as it passes between your application and your hardware.&lt;/p&gt;
+
+&lt;p&gt;There’s a few steps involved in setting this up, so rather than repeat it here, all the steps are &lt;a href=&quot;https://github.com/alexa-pi/AlexaPi/wiki/Audio-setup-&amp;amp;-debugging#pulseaudiohere&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;debugging&quot;&gt;Debugging&lt;/h2&gt;
+
+&lt;h2 id=&quot;packaging-the-project&quot;&gt;Packaging the Project&lt;/h2&gt;
 
 &lt;!--Create Ideal Image Slider--&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;

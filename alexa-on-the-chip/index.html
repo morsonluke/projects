@@ -68,15 +68,15 @@
 
 <h2 id="what-is-the-chip">What is the C.H.I.P</h2>
 
-<p>CHIP is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really <a href="https://getchip.com/pages/dashbot" target="blank">interesting project.</a></p>
+<p>C.H.I.P is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really <a href="https://getchip.com/pages/dashbot" target="blank">interesting project.</a></p>
 
 <h2 id="required-for-this-project">Required for this project</h2>
 
 <ol>
   <li>C.H.I.P</li>
-  <li>HDMI “shield” for C.H.I.P. This allows you to connect to a HDMI. This is actually more expensive than the C.H.I.P itself…</li>
+  <li>HDMI “shield” for the C.H.I.P.</li>
   <li>Power supply with MicroUSB cable.</li>
-  <li>HDMI cable, mouse, keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.</li>
+  <li>HDMI cable, mouse and keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.</li>
   <li>Small batter powered speaker</li>
   <li>USB microphone.</li>
 </ol>
@@ -85,7 +85,7 @@
 
 <p>The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.</p>
 
-<p>With the computer still attached to the TV, trying a simple <code>sudo apt-get update</code> crashed it. It also seemed the the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.</p>
+<p>With the computer still attached to the TV, trying a simple <code>sudo apt-get update</code> crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">update</span><span class="w">
 </span><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">upgrade</span><span class="w">
@@ -107,11 +107,11 @@
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">git</span><span class="w"> </span><span class="err">//git</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">required</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">github.</span><span class="w">
 </span><span class="err">cd</span><span class="w"> </span><span class="err">/opt</span><span class="w"> </span><span class="err">//change</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">working</span><span class="w"> </span><span class="err">directory</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">opt.</span><span class="w">
 </span><span class="err">sudo</span><span class="w"> </span><span class="err">git</span><span class="w"> </span><span class="err">clone</span><span class="w"> </span><span class="err">https://github.com/alexa-pi/AlexaPi.git</span><span class="w">
-</span><span class="err">sudo</span><span class="w"> </span><span class="err">./AlexaPi/src/scripts/setup.sh</span><span class="w"> </span><span class="err">/the</span><span class="w"> </span><span class="err">device</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">here</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">chip</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">OS</span><span class="w"> </span><span class="err">Debian.</span></code></pre></figure>
+</span><span class="err">sudo</span><span class="w"> </span><span class="err">./AlexaPi/src/scripts/setup.sh</span><span class="w"> </span><span class="err">//the</span><span class="w"> </span><span class="err">device</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">here</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">chip</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">OS</span><span class="w"> </span><span class="err">Debian.</span></code></pre></figure>
 
 <p>Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret <b>very carefully</b>, any errors in copying them over could cause the script not to work.</p>
 
-<p>Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon. The first time I did this I missed this step and was getting an error.</p>
+<p>Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.</p>
 
 <h2 id="how-does-it-work">How does it work?</h2>
 
@@ -125,7 +125,15 @@
 	<img src="/projects/img/speaker2.png" />
 </div>
 
-<h2 id="to-be-continued">To be continued…</h2>
+<h2 id="setting-up-pulseaudio">Setting up PulseAudio</h2>
+
+<p>PulseAudio is a s a proxy for your sound applications. It allows you to do advanced operations on your sound data as it passes between your application and your hardware.</p>
+
+<p>There’s a few steps involved in setting this up, so rather than repeat it here, all the steps are <a href="https://github.com/alexa-pi/AlexaPi/wiki/Audio-setup-&amp;-debugging#pulseaudiohere">here</a>.</p>
+
+<h2 id="debugging">Debugging</h2>
+
+<h2 id="packaging-the-project">Packaging the Project</h2>
 
 <!--Create Ideal Image Slider-->
 <script type="text/javascript">
