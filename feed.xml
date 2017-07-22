@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-21T19:22:33-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-22T10:08:53-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
 
 &lt;h2 id=&quot;why-not-just-buy-a-kit&quot;&gt;Why not just buy a kit?&lt;/h2&gt;
 
@@ -73,21 +73,21 @@
 
 &lt;p&gt;main.py is then the main AVS client which waits for the trigger word “Alexa”, or the button to be pressed. It records the audio and posts this to the AVS service using the requests library. The AVS then does some magic and sends back the response which is played back to you.&lt;/p&gt;
 
-&lt;div id=&quot;slider&quot;&gt;
-	&lt;img src=&quot;/projects/img/radio.png&quot; /&gt;
-	&lt;img src=&quot;/projects/img/speaker1.png&quot; /&gt;
-	&lt;img src=&quot;/projects/img/speaker2.png&quot; /&gt;
-&lt;/div&gt;
-
 &lt;h2 id=&quot;setting-up-pulseaudio&quot;&gt;Setting up PulseAudio&lt;/h2&gt;
 
 &lt;p&gt;PulseAudio is a s a proxy for your sound applications. It allows you to do advanced operations on your sound data as it passes between your application and your hardware.&lt;/p&gt;
 
 &lt;p&gt;There’s a few steps involved in setting this up, so rather than repeat it here, all the steps are &lt;a href=&quot;https://github.com/alexa-pi/AlexaPi/wiki/Audio-setup-&amp;amp;-debugging#pulseaudiohere&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;debugging&quot;&gt;Debugging&lt;/h2&gt;
+&lt;iframe width=&quot;660&quot; height=&quot;350&quot; src=&quot;https://www.youtube.com/embed/cq_QLOaF1hU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;h2 id=&quot;packaging-the-project&quot;&gt;Packaging the Project&lt;/h2&gt;
+&lt;h2 id=&quot;to-be-continuedpackaging-the-project&quot;&gt;To be continued…Packaging the Project&lt;/h2&gt;
+
+&lt;div id=&quot;slider&quot;&gt;
+	&lt;img src=&quot;/projects/img/radio.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker1.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker2.png&quot; /&gt;
+&lt;/div&gt;
 
 &lt;!--Create Ideal Image Slider--&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
