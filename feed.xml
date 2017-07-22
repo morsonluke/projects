@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-07-22T10:08:53-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="/projects/" rel="alternate" type="text/html" /><updated>2017-07-22T10:20:12-04:00</updated><id>/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
 
 &lt;h2 id=&quot;why-not-just-buy-a-kit&quot;&gt;Why not just buy a kit?&lt;/h2&gt;
 
@@ -14,9 +14,9 @@
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter1.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The Prusa Medel is controlled by an Arduino MEGA with a RepRap Arduino Mega Pololu shield or &lt;strong&gt;RAMPS&lt;/strong&gt;. The Pololu are the stepper motor controllers.&lt;/p&gt;
+&lt;p&gt;The Prusa Mendel is controlled by an Arduino MEGA with a RepRap Arduino Mega Pololu shield or &lt;strong&gt;RAMPS&lt;/strong&gt;. The Pololu are the stepper motor controllers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-18T00:00:00-04:00</published><updated>2017-07-18T00:00:00-04:00</updated><id>/projects/alexa-on-the-chip</id><content type="html" xml:base="/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/CHIP2.png&quot; /&gt;&lt;/p&gt;
 
@@ -39,7 +39,7 @@
 
 &lt;p&gt;The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.&lt;/p&gt;
 
-&lt;p&gt;With the computer still attached to the TV, trying a simple &lt;code&gt;sudo apt-get update&lt;/code&gt; crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.&lt;/p&gt;
+&lt;p&gt;With the computer still attached to the TV, trying a simple &lt;code&gt;sudo apt-get update&lt;/code&gt; crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield allowed for me to connect using PuTTY.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;upgrade&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -65,7 +65,7 @@
 
 &lt;p&gt;Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret &lt;b&gt;very carefully&lt;/b&gt;, any errors in copying them over could cause the script not to work.&lt;/p&gt;
 
-&lt;p&gt;Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.&lt;/p&gt;
+&lt;p&gt;Next it will ask you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using Firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
 
@@ -100,7 +100,7 @@ var slider = new IdealImageSlider.Slider({
 });
 slider.start();
 
-&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-07-09T00:00:00-04:00</published><updated>2017-07-09T00:00:00-04:00</updated><id>/projects/jekyll</id><content type="html" xml:base="/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
 
@@ -162,7 +162,7 @@ slider.start();
   &lt;li&gt;In the future any changes to the site just need to be committed and synced to update your website.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 
@@ -179,13 +179,13 @@ slider.start();
 
 &lt;h2 id=&quot;build&quot;&gt;Build&lt;/h2&gt;
 
-&lt;p&gt;The main body of the ‘coat hanger’ was made from a varnished peice of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.&lt;/p&gt;
+&lt;p&gt;The main body of the ‘coat hanger’ was made from a varnished piece of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.&lt;/p&gt;
 
-&lt;p&gt;The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The polaroids could then be glued to the top of the wood.&lt;/p&gt;
+&lt;p&gt;The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The Polaroids could then be glued to the top of the wood.&lt;/p&gt;
 
 &lt;h2 id=&quot;raspberry-pi-setup&quot;&gt;Raspberry Pi Setup&lt;/h2&gt;
 
-&lt;p&gt;To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your wifi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.&lt;/p&gt;
+&lt;p&gt;To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your WiFi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.&lt;/p&gt;
 
 &lt;h2 id=&quot;electronics&quot;&gt;Electronics&lt;/h2&gt;
 
@@ -236,7 +236,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5&lt;/code&gt;&lt;/pre&gt;&l
 
 &lt;p&gt;The root of the folder of the web server is /var/www/html/. If you navigate to your Raspberry Pi IP address from another device on the network you should see the default page that comes with the installation.&lt;/p&gt;
 
-&lt;p&gt;The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual polaroids.&lt;/p&gt;
+&lt;p&gt;The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual Polaroids.&lt;/p&gt;
 
 &lt;div id=&quot;slider2&quot;&gt;
 	&lt;img src=&quot;/projects/img/wphm5.png&quot; /&gt;
@@ -340,7 +340,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5&lt;/code&gt;&lt;/pre&gt;&l
 
 &lt;h2 id=&quot;cron&quot;&gt;CRON&lt;/h2&gt;
 
-&lt;p&gt;As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root foler of my web server.&lt;/p&gt;
+&lt;p&gt;As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root folder of my web server.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;//Check the following command works on the command line first to make sure the script runs
 /usr/bin/php /var/www/html/scroll.php
@@ -359,7 +359,7 @@ crontab -e
 
 &lt;h2 id=&quot;improvements&quot;&gt;Improvements&lt;/h2&gt;
 
-&lt;p&gt;In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.&lt;/p&gt;
+&lt;p&gt;In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which Polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.&lt;/p&gt;
 
 &lt;!--Create Ideal Image Slider--&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;

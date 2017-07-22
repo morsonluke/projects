@@ -85,7 +85,7 @@
 
 <p>The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.</p>
 
-<p>With the computer still attached to the TV, trying a simple <code>sudo apt-get update</code> crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield alllowed for me to connect using PuTTY.</p>
+<p>With the computer still attached to the TV, trying a simple <code>sudo apt-get update</code> crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield allowed for me to connect using PuTTY.</p>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">update</span><span class="w">
 </span><span class="err">sudo</span><span class="w"> </span><span class="err">apt-get</span><span class="w"> </span><span class="err">upgrade</span><span class="w">
@@ -111,7 +111,7 @@
 
 <p>Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret <b>very carefully</b>, any errors in copying them over could cause the script not to work.</p>
 
-<p>Next it will aks you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.</p>
+<p>Next it will ask you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using Firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.</p>
 
 <h2 id="how-does-it-work">How does it work?</h2>
 

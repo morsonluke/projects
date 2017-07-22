@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/projects/weather-depicting-coat-hanger/</loc>
+<loc>/projects/weather-depicting-coat-hanger/</loc>
 <lastmod>2017-04-11T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/projects/jekyll/</loc>
+<loc>/projects/jekyll/</loc>
 <lastmod>2017-07-09T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/projects/alexa-on-the-chip/</loc>
+<loc>/projects/alexa-on-the-chip/</loc>
 <lastmod>2017-07-18T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/projects/prusa-mendel-3D-printer/</loc>
+<loc>/projects/prusa-mendel-3D-printer/</loc>
 <lastmod>2017-07-21T00:00:00-04:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/projects/404/</loc>
+<loc>/projects/404/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/about/</loc>
+<loc>/projects/about/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/</loc>
+<loc>/projects/</loc>
 </url>
 </urlset>
