@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="/projects/" rel="alternate" type="text/html" /><updated>2017-08-01T20:42:40-04:00</updated><id>/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Weather Depicting Coat Hanger</title><link href="/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-07-21T00:00:00-04:00</published><updated>2017-07-21T00:00:00-04:00</updated><id>/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-11-04T13:52:31+00:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Getting started with Strava’s API using Node</title><link href="http://localhost:4000/projects/strava-node-api/" rel="alternate" type="text/html" title="Getting started with Strava's API using Node" /><published>2017-09-19T00:00:00+01:00</published><updated>2017-09-19T00:00:00+01:00</updated><id>http://localhost:4000/projects/strava-node-api</id><content type="html" xml:base="http://localhost:4000/projects/strava-node-api/">&lt;p&gt;Exploring Strava’s comprehensive API.&lt;/p&gt;
+
+&lt;p&gt;Strava V3 API is a publicly available interface allowing access to Strava’s dataset. A Strava API application only has access to certain user data without any authorization. In this first step I am going to explore how to get started and what data can be accessed without the user authorization.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;Access to the Strava API first requires creating an &lt;a href=&quot;https://developers.strava.com/&quot; target=&quot;blank&quot;&gt;application online&lt;/a&gt;. Here you can get your &lt;code&gt;access_token&lt;/code&gt; which allows for basic access to some of Strava’s API endpoints.&lt;/p&gt;
+
+&lt;p&gt;There’s a huge number of language libraries on offer here but I will be using the &lt;a href=&quot;https://github.com/ajsnapshots/node-strava-v3&quot; target=&quot;blank&quot;&gt; Node library&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create an application and make a note of the &lt;code&gt;access_token&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Open up the command prompt and make a new directory &lt;code&gt;mkdir strava-node-api &amp;amp;&amp;amp; cd strava-node-api&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;npm init&lt;/code&gt; and accept all defaults&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;mkdir data&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;copy the strava_config file to the data folder and update the &lt;code&gt;access_token&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Create an index.js file and add the code below before running &lt;code&gt;node index.js&lt;/code&gt; to see the output.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;basic-code&quot;&gt;Basic Code&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'strava-v3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athletes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({},&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To see the basic usage you can download the files from &lt;a href=&quot;https://github.com/morsonluke/strava-node-api&quot; target=&quot;blank&quot;&gt;here&lt;/a&gt; and just add your &lt;code&gt;access_token&lt;/code&gt; before running &lt;code&gt;node index.js&lt;/code&gt; and seeing the output in the terminal.&lt;/p&gt;
+
+&lt;p&gt;You can see the JSON output below. It’s interesting that you can see a range of information without any authorization. You can get information like gender, location and if the account is premium. Theoretically this information could be gathered for all of Strava’s user base.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;466459&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;resource_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'London'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'UK'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'United Kingdom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;sex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'M'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;premium&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2012-04-01T13:07:37Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;updated_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2017-10-06T16:03:08Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;badge_type_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;profile_medium&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;profile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;friend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;follower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'accepted'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
+  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Each response also contains the rate limit for the API. The default rate limit allows 600 requests every 15 minutes, with up to 30,000 requests per day. This seems like more than enough for the next step.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascrip&quot; data-lang=&quot;javascrip&quot;&gt;--&amp;gt; output of console.log(limits);
+  {shortTermUsage: 2,
+  shortTermLimit: 600,
+  longTermUsage: 2,
+  longTermLimit: 30000 }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>Luke Morson</name></author><summary type="html">Exploring Strava’s comprehensive API.</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-07-21T00:00:00+01:00</published><updated>2017-07-21T00:00:00+01:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 
@@ -234,7 +308,7 @@ var slider = new IdealImageSlider.Slider({
 });
 slider.start();
 
-&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-14T00:00:00-04:00</published><updated>2017-07-14T00:00:00-04:00</updated><id>/projects/alexa-on-the-chip</id><content type="html" xml:base="/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-14T00:00:00+01:00</published><updated>2017-07-14T00:00:00+01:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/CHIP2.png&quot; /&gt;&lt;/p&gt;
 
@@ -318,7 +392,7 @@ var slider = new IdealImageSlider.Slider({
 });
 slider.start();
 
-&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-01T00:00:00-04:00</published><updated>2017-07-01T00:00:00-04:00</updated><id>/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-01T00:00:00+01:00</published><updated>2017-07-01T00:00:00+01:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
 
 &lt;h2 id=&quot;why-not-just-buy-a-kit&quot;&gt;Why not just buy a kit?&lt;/h2&gt;
 
@@ -336,13 +410,13 @@ slider.start();
 
 &lt;p&gt;The Prusa Mendel is controlled by an Arduino MEGA with a RepRap Arduino Mega Pololu shield or &lt;strong&gt;RAMPS&lt;/strong&gt;. The Pololu are the stepper motor controllers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Fibonnaci Clock</title><link href="/projects/fibonnaci-clock/" rel="alternate" type="text/html" title="Fibonnaci Clock" /><published>2017-06-15T00:00:00-04:00</published><updated>2017-06-15T00:00:00-04:00</updated><id>/projects/fibonnaci-clock</id><content type="html" xml:base="/projects/fibonnaci-clock/">&lt;p&gt;This clock uses the Fibonacci sequence to display the time…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Fibonnaci Clock</title><link href="http://localhost:4000/projects/fibonnaci-clock/" rel="alternate" type="text/html" title="Fibonnaci Clock" /><published>2017-06-15T00:00:00+01:00</published><updated>2017-06-15T00:00:00+01:00</updated><id>http://localhost:4000/projects/fibonnaci-clock</id><content type="html" xml:base="http://localhost:4000/projects/fibonnaci-clock/">&lt;p&gt;This clock uses the Fibonacci sequence to display the time…&lt;/p&gt;
 
 &lt;p&gt;I still haven’t got around to writing this one up. But here’s the end result.&lt;/p&gt;
 
 &lt;h2 id=&quot;fibonnaci-clock&quot;&gt;Fibonnaci Clock&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/projects/img/fibo4.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">This clock uses the Fibonacci sequence to display the time…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-06-08T00:00:00-04:00</published><updated>2017-06-08T00:00:00-04:00</updated><id>/projects/jekyll</id><content type="html" xml:base="/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/projects/img/fibo4.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">This clock uses the Fibonacci sequence to display the time…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-06-08T00:00:00+01:00</published><updated>2017-06-08T00:00:00+01:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
 
