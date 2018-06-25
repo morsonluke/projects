@@ -66,7 +66,7 @@
 
 <h3 id="gazer">Gazer</h3>
 
-<p>This post is a simple outline of how I set up <a href="https://github.com/deangelo-llooker/gzr">Gazer</a> - an open source command line tool for the BI tool Looker.</p>
+<p>This post is a simple outline of how I set up <a href="https://github.com/deangelo-llooker/gzr">Gazer</a> - an open source command line tool for Looker. I am always looking for ways to automate my day and this tool allows for quickly getting the answer to the odd question I get.</p>
 
 <h3 id="installation-outline">Installation Outline</h3>
 
@@ -75,10 +75,10 @@
 <ul>
   <li>Installed rbenv to manage ruby envionrments
     <ul>
-      <li>Installed required dependencies Homebrew etc.</li>
+      <li>Installed required dependencies Homebrew</li>
     </ul>
   </li>
-  <li>Removed any references to RVM previously installed as rbenv and RVM are incompatible
+  <li>Removed any references to RVM previously installed as rbenv and RVM are incompatible by:
     <ul>
       <li><code class="highlighter-rouge">$ RVM implode</code></li>
       <li>Removed any reference in <code class="highlighter-rouge">bash_profile</code></li>
@@ -88,9 +88,7 @@
   <li>Installed ruby version 2.3.3. using rbenv</li>
   <li>Created a local file ‘Gazer’
     * <code class="highlighter-rouge">cd Desktop/Gazer &amp;&amp; rbenv local 2.3.3</code></li>
-  <li>
-    <p>Checked all working using <code class="highlighter-rouge">rbenv versions</code> in <code class="highlighter-rouge">$ /Desktop/Gazer</code></p>
-  </li>
+  <li>Checked all working using <code class="highlighter-rouge">rbenv versions</code> in <code class="highlighter-rouge">$ /Desktop/Gazer</code></li>
   <li>Create .netrc file
     <ul>
       <li>cd ~ &amp;&amp; atom .netrc</li>
@@ -105,8 +103,6 @@
     </ul>
   </li>
 </ul>
-
-<p>Note: There is an interesting issue here when running other Python scripts using session() as the .netrc file seems to cause issues.</p>
 
 <h3 id="examples-commands">Examples Commands</h3>
 
