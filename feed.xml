@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2018-06-24T20:16:49+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Getting started with Strava’s API using Node</title><link href="http://localhost:4000/projects/strava-node-api/" rel="alternate" type="text/html" title="Getting started with Strava's API using Node" /><published>2017-09-19T00:00:00+01:00</published><updated>2017-09-19T00:00:00+01:00</updated><id>http://localhost:4000/projects/strava-node-api</id><content type="html" xml:base="http://localhost:4000/projects/strava-node-api/">&lt;p&gt;Exploring Strava’s comprehensive API.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2018-06-25T07:50:01+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Gazer &amp;amp; Looker</title><link href="http://localhost:4000/projects/gazer/" rel="alternate" type="text/html" title="Gazer &amp; Looker" /><published>2018-06-24T00:00:00+01:00</published><updated>2018-06-24T00:00:00+01:00</updated><id>http://localhost:4000/projects/gazer</id><content type="html" xml:base="http://localhost:4000/projects/gazer/">&lt;p&gt;Playing around with a fun command line tool for Looker.&lt;/p&gt;
+
+&lt;h3 id=&quot;gazer&quot;&gt;Gazer&lt;/h3&gt;
+
+&lt;p&gt;This post is a simple outline of how I set up &lt;a href=&quot;https://github.com/deangelo-llooker/gzr&quot;&gt;Gazer&lt;/a&gt; - an open source command line tool for the BI tool Looker.&lt;/p&gt;
+
+&lt;h3 id=&quot;installation-outline&quot;&gt;Installation Outline&lt;/h3&gt;
+
+&lt;p&gt;This isn’t a comprehensive guide to the installation and just shows the process I went through.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Installed rbenv to manage ruby envionrments
+    &lt;ul&gt;
+      &lt;li&gt;Installed required dependencies Homebrew etc.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Removed any references to RVM previously installed as rbenv and RVM are incompatible
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ RVM implode&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Removed any reference in &lt;code class=&quot;highlighter-rouge&quot;&gt;bash_profile&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Restart to avoid any issues&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Installed ruby version 2.3.3. using rbenv&lt;/li&gt;
+  &lt;li&gt;Created a local file ‘Gazer’
+    * &lt;code class=&quot;highlighter-rouge&quot;&gt;cd Desktop/Gazer &amp;amp;&amp;amp; rbenv local 2.3.3&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Checked all working using &lt;code class=&quot;highlighter-rouge&quot;&gt;rbenv versions&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;$ /Desktop/Gazer&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create .netrc file
+    &lt;ul&gt;
+      &lt;li&gt;cd ~ &amp;amp;&amp;amp; atom .netrc&lt;/li&gt;
+      &lt;li&gt;Added the following to the .netrc file:
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; machine &amp;lt;&amp;lt;looker instance&amp;gt;&amp;gt;.looker.com
+ login &amp;lt;&amp;lt;client ID&amp;gt;&amp;gt;
+ password &amp;lt;&amp;lt;Client Secret&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Restrict access to the .netrc file: &lt;code class=&quot;highlighter-rouge&quot;&gt;$ chmod 600.netrc&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note: There is an interesting issue here when running other Python scripts using session() as the .netrc file seems to cause issues.&lt;/p&gt;
+
+&lt;h3 id=&quot;examples-commands&quot;&gt;Examples Commands&lt;/h3&gt;
+
+&lt;p&gt;If you fire up the terminal and fire up something like &lt;code class=&quot;highlighter-rouge&quot;&gt;gzr look cat 297 --host &amp;lt;&amp;lt;looker instance&amp;gt;&amp;gt;&lt;/code&gt; then you can quickly see the JSON return for the dashboard and quickly find out what you need to know.&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Playing around with a fun command line tool for Looker.</summary></entry><entry><title type="html">Getting started with Strava’s API using Node</title><link href="http://localhost:4000/projects/strava-node-api/" rel="alternate" type="text/html" title="Getting started with Strava's API using Node" /><published>2017-09-19T00:00:00+01:00</published><updated>2017-09-19T00:00:00+01:00</updated><id>http://localhost:4000/projects/strava-node-api</id><content type="html" xml:base="http://localhost:4000/projects/strava-node-api/">&lt;p&gt;Exploring Strava’s comprehensive API.&lt;/p&gt;
 
 &lt;p&gt;Strava V3 API is a publicly available interface allowing access to Strava’s dataset. A Strava API application only has access to certain user data without any authorization. In this first step I am going to explore how to get started and what data can be accessed without the user authorization.&lt;/p&gt;
 
