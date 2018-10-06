@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting up an EC2 instance for Deep Learning – Luke Morson – </title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="A quick guide to firing up an instance for Deep Learning.
+
+" />
+    <meta property="og:description" content="A quick guide to firing up an instance for Deep Learning.
+
+" />
+    
+    <meta name="author" content="Luke Morson" />
+
+    
+    <meta property="og:title" content="Setting up an EC2 instance for Deep Learning" />
+    <meta property="twitter:title" content="Setting up an EC2 instance for Deep Learning" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/projects/style.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Luke Morson - " href="/projects/feed.xml" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  </head>
+
+<!--Ideal Image Slider-->
+<link rel="stylesheet" href="/projects/assets/ideal-image-slider.css">
+<link rel="stylesheet" href="/projects/themes/default/default.css">
+
+<script src="/projects/assets/ideal-image-slider.js"></script>
+
+
+  <body>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="post-heading">
+            <h1>Setting up an EC2 instance for Deep Learning</h1>
+            <span class="meta">Posted by <a href="/projects/about"> Luke Morson
+            </a> on October  5, 2018
+            <a href="/projects/"> { Return to Blog }</a>
+            </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+ <div class="space-extra-small">
+ </div>
+
+  <div class="entry">
+    <p>A quick guide to firing up an instance for Deep Learning.</p>
+
+<h3 id="deep-learning-in-the-cloud">Deep Learning in the Cloud</h3>
+
+<p>Training and evaluating deep neural networks isn’t a walk in the park. It requires a lot of computation and can easily be too difficult to perform locally on only the CPU. I’ve recently being doing a course in ML and needed to be able to use something with a bit more oomph.</p>
+
+<p>My laptop unfortunately doesn’t come equipped with an NVIDIA GPU and, although I could maybe build my own deep learning computer according to <a href="https://medium.com/yanda/building-your-own-deep-learning-dream-machine-4f02ccdb0460">this blog</a>, I don’t think I’ll be doing this anytime soon.</p>
+
+<p>AWS comes with something called Elastic Compute Cloud (EC2) which allows you to launch a virtual server (or instance) with GPUs. The smart people at Amazon make it easy for you to spin up an instance with a whole load of pre-defined dependencies - these are AMIs (Amazon Machine Images).</p>
+
+<h3 id="setting-up-the-instance">Setting up the instance</h3>
+
+<ul>
+  <li>Select EC2 from the bewildering list of services that AWS offers</li>
+  <li>Select Launch instance</li>
+  <li>Select Amazon Marketplace</li>
+  <li>Search for <code class="highlighter-rouge">Deep Learning AMI with Source Code (CUDA 8, Ubuntu)</code>. This contains all the environmental files and drivers requires to train on a GPU.</li>
+</ul>
+
+<p><img src="/projects/img/aws_marketplace.png" /></p>
+
+<ul>
+  <li>Select the instance type by filtering for GPU Compute and selecting <code class="highlighter-rouge">p2.xlarge</code>. Review and Launch.</li>
+  <li>You will next be prompted to download the key pair</li>
+</ul>
+
+<p>At this point the instance will start to be created and may take a few minutes to complete. You will also start to be charged for it.</p>
+
+<p>There is one last step which enables access the Jupyter notebook. This requires configuring the AWS Security Group to allow access to port 8888.</p>
+
+<p><img src="/projects/img/aws_security_group.png" /></p>
+
+<h3 id="connecting-to-the-instance">Connecting to the instance</h3>
+
+<p>Connecting to the instance is simpler on a mac but I was using a windows laptop at this point. You can see how to connect using PuTTY <a href="https://docs.aws.amazon.com/3AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console">here</a>.</p>
+
+<p>This will open a terminal giving access to the instance.</p>
+
+<p><img src="/projects/img/aws_ubuntu_terminal.png" /></p>
+
+<p>The next bit of code is from the course but sets up the Jupyter notebook on the newly spun up instance:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># Create config file for Jupyter notebook settings</span>
+jupyter notebook --generate-config
+
+<span class="c"># Change the IP address config for the notebook</span>
+ sed -ie <span class="s2">"s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g"</span> ~/.jupyter/jupyter_notebook_config.py
+
+<span class="c"># Clone the GitHub repository</span>
+git clone https://github.com/udacity/aind2-cnn.git
+
+<span class="nb">cd </span>aind2-cnn
+
+<span class="c"># Install the requirements</span>
+sudo python3 -m pip install -r requirements/requirements.txt
+
+<span class="c"># Start the Jupyter notebook instance</span>
+jupyter notebook --ip<span class="o">=</span>0.0.0.0 --no-browser</code></pre></figure>
+
+<p>At this point you can try and access the Jupyter notebook from your web browser by copying the IP address  of the instance and the code from the terminal as <code class="highlighter-rouge">https://X.X.X.X:8000/?token={output token in the terminal}</code></p>
+
+<p>If all has gone to plan, the Jupyter notebook should appear and the code can be ran. There’s a lot more to explore here in terms of automation but it is cool to be able to spin up and instance and train a model in 5 minutes</p>
+
+<p>To ensure you don’t get charged you will need to ensure you stop the instance and also delete any storage.</p>
+
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'morsonluke';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+            <div class="svg-icon">
+          
+<a href="mailto:morsonluke.development@gmail.com"><i class="icon-envelope icon-2x"></i></a>
+
+
+<a href="https://github.com/morsonluke"><i class="icon-github icon-2x"></i></a>
+
+<a href="https://www.linkedin.com/in/luke-morson-51718692"><i class="icon-linkedin-sign icon-2x"></i></a>
+
+
+
+
+
+
+
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-103810189-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/projects/ec2-instance-deep-learning/',
+		  'title': 'Setting up an EC2 instance for Deep Learning'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+
+  </body>
+</html>

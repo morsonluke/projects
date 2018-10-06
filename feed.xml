@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2018-06-25T21:31:33+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Gazer &amp;amp; Looker</title><link href="http://localhost:4000/projects/gazer/" rel="alternate" type="text/html" title="Gazer &amp; Looker" /><published>2018-06-24T00:00:00+01:00</published><updated>2018-06-24T00:00:00+01:00</updated><id>http://localhost:4000/projects/gazer</id><content type="html" xml:base="http://localhost:4000/projects/gazer/">&lt;p&gt;Playing around with a fun command line tool for Looker.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2018-10-06T16:04:54+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Setting up an EC2 instance for Deep Learning</title><link href="http://localhost:4000/projects/ec2-instance-deep-learning/" rel="alternate" type="text/html" title="Setting up an EC2 instance for Deep Learning" /><published>2018-10-05T00:00:00+01:00</published><updated>2018-10-05T00:00:00+01:00</updated><id>http://localhost:4000/projects/ec2-instance-deep-learning</id><content type="html" xml:base="http://localhost:4000/projects/ec2-instance-deep-learning/">&lt;p&gt;A quick guide to firing up an instance for Deep Learning.&lt;/p&gt;
+
+&lt;h3 id=&quot;deep-learning-in-the-cloud&quot;&gt;Deep Learning in the Cloud&lt;/h3&gt;
+
+&lt;p&gt;Training and evaluating deep neural networks isn’t a walk in the park. It requires a lot of computation and can easily be too difficult to perform locally on only the CPU. I’ve recently being doing a course in ML and needed to be able to use something with a bit more oomph.&lt;/p&gt;
+
+&lt;p&gt;My laptop unfortunately doesn’t come equipped with an NVIDIA GPU and, although I could maybe build my own deep learning computer according to &lt;a href=&quot;https://medium.com/yanda/building-your-own-deep-learning-dream-machine-4f02ccdb0460&quot;&gt;this blog&lt;/a&gt;, I don’t think I’ll be doing this anytime soon.&lt;/p&gt;
+
+&lt;p&gt;AWS comes with something called Elastic Compute Cloud (EC2) which allows you to launch a virtual server (or instance) with GPUs. The smart people at Amazon make it easy for you to spin up an instance with a whole load of pre-defined dependencies - these are AMIs (Amazon Machine Images).&lt;/p&gt;
+
+&lt;h3 id=&quot;setting-up-the-instance&quot;&gt;Setting up the instance&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select EC2 from the bewildering list of services that AWS offers&lt;/li&gt;
+  &lt;li&gt;Select Launch instance&lt;/li&gt;
+  &lt;li&gt;Select Amazon Marketplace&lt;/li&gt;
+  &lt;li&gt;Search for &lt;code class=&quot;highlighter-rouge&quot;&gt;Deep Learning AMI with Source Code (CUDA 8, Ubuntu)&lt;/code&gt;. This contains all the environmental files and drivers requires to train on a GPU.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_marketplace.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select the instance type by filtering for GPU Compute and selecting &lt;code class=&quot;highlighter-rouge&quot;&gt;p2.xlarge&lt;/code&gt;. Review and Launch.&lt;/li&gt;
+  &lt;li&gt;You will next be prompted to download the key pair&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At this point the instance will start to be created and may take a few minutes to complete. You will also start to be charged for it.&lt;/p&gt;
+
+&lt;p&gt;There is one last step which enables access the Jupyter notebook. This requires configuring the AWS Security Group to allow access to port 8888.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_security_group.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;connecting-to-the-instance&quot;&gt;Connecting to the instance&lt;/h3&gt;
+
+&lt;p&gt;Connecting to the instance is simpler on a mac but I was using a windows laptop at this point. You can see how to connect using PuTTY &lt;a href=&quot;https://docs.aws.amazon.com/3AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This will open a terminal giving access to the instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_ubuntu_terminal.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next bit of code is from the course but sets up the Jupyter notebook on the newly spun up instance:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Create config file for Jupyter notebook settings&lt;/span&gt;
+jupyter notebook --generate-config
+
+&lt;span class=&quot;c&quot;&gt;# Change the IP address config for the notebook&lt;/span&gt;
+ sed -ie &lt;span class=&quot;s2&quot;&gt;&quot;s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g&quot;&lt;/span&gt; ~/.jupyter/jupyter_notebook_config.py
+
+&lt;span class=&quot;c&quot;&gt;# Clone the GitHub repository&lt;/span&gt;
+git clone https://github.com/udacity/aind2-cnn.git
+
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;aind2-cnn
+
+&lt;span class=&quot;c&quot;&gt;# Install the requirements&lt;/span&gt;
+sudo python3 -m pip install -r requirements/requirements.txt
+
+&lt;span class=&quot;c&quot;&gt;# Start the Jupyter notebook instance&lt;/span&gt;
+jupyter notebook --ip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0.0.0 --no-browser&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;At this point you can try and access the Jupyter notebook from your web browser by copying the IP address  of the instance and the code from the terminal as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://X.X.X.X:8000/?token={output token in the terminal}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If all has gone to plan, the Jupyter notebook should appear and the code can be ran. There’s a lot more to explore here in terms of automation but it is cool to be able to spin up and instance and train a model in 5 minutes&lt;/p&gt;
+
+&lt;p&gt;To ensure you don’t get charged you will need to ensure you stop the instance and also delete any storage.&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A quick guide to firing up an instance for Deep Learning.</summary></entry><entry><title type="html">Gazer &amp;amp; Looker</title><link href="http://localhost:4000/projects/gazer/" rel="alternate" type="text/html" title="Gazer &amp; Looker" /><published>2018-06-24T00:00:00+01:00</published><updated>2018-06-24T00:00:00+01:00</updated><id>http://localhost:4000/projects/gazer</id><content type="html" xml:base="http://localhost:4000/projects/gazer/">&lt;p&gt;Playing around with a fun command line tool for Looker.&lt;/p&gt;
 
 &lt;h3 id=&quot;gazer&quot;&gt;Gazer&lt;/h3&gt;
 
