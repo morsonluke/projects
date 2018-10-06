@@ -47,7 +47,7 @@
         <div class="post-heading">
             <h1>Weather Depicting Coat Hanger</h1>
             <span class="meta">Posted by <a href="/projects/about"> Luke Morson
-            </a> on April 11, 2017
+            </a> on July 21, 2017
             <a href="/projects/"> { Return to Blog }</a>
             </span>
         </div>
@@ -79,13 +79,13 @@
 
 <h2 id="build">Build</h2>
 
-<p>The main body of the ‘coat hanger’ was made from a varnished peice of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.</p>
+<p>The main body of the ‘coat hanger’ was made from a varnished piece of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.</p>
 
-<p>The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The polaroids could then be glued to the top of the wood.</p>
+<p>The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The Polaroids could then be glued to the top of the wood.</p>
 
 <h2 id="raspberry-pi-setup">Raspberry Pi Setup</h2>
 
-<p>To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your wifi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.</p>
+<p>To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your WiFi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.</p>
 
 <h2 id="electronics">Electronics</h2>
 
@@ -136,7 +136,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5</code></pre></figure>
 
 <p>The root of the folder of the web server is /var/www/html/. If you navigate to your Raspberry Pi IP address from another device on the network you should see the default page that comes with the installation.</p>
 
-<p>The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual polaroids.</p>
+<p>The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual Polaroids.</p>
 
 <div id="slider2">
 	<img src="/projects/img/wphm5.png" />
@@ -240,7 +240,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5</code></pre></figure>
 
 <h2 id="cron">CRON</h2>
 
-<p>As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root foler of my web server.</p>
+<p>As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root folder of my web server.</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php">//Check the following command works on the command line first to make sure the script runs
 /usr/bin/php /var/www/html/scroll.php
@@ -259,7 +259,7 @@ crontab -e
 
 <h2 id="improvements">Improvements</h2>
 
-<p>In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.</p>
+<p>In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which Polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.</p>
 
 <!--Create Ideal Image Slider-->
 <script type="text/javascript">
@@ -329,10 +329,10 @@ slider.start();
         <footer class="footer">
             <div class="svg-icon">
           
-<a href="mailto:morsonluke@gmail.com"><i class="icon-envelope icon-2x"></i></a>
+<a href="mailto:morsonluke.development@gmail.com"><i class="icon-envelope icon-2x"></i></a>
 
 
-
+<a href="https://github.com/morsonluke"><i class="icon-github icon-2x"></i></a>
 
 <a href="https://www.linkedin.com/in/luke-morson-51718692"><i class="icon-linkedin-sign icon-2x"></i></a>
 
@@ -348,6 +348,21 @@ slider.start();
     </div>
 
     
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-103810189-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/projects/weather-depicting-coat-hanger/',
+		  'title': 'Weather Depicting Coat Hanger'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
 
 
   </body>

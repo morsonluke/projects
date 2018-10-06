@@ -1,4 +1,185 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2017-06-18T19:05:44-04:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-04-11T00:00:00-04:00</published><updated>2017-04-11T00:00:00-04:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2018-10-06T10:44:06+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Setting up an EC2 instance for Deep Learning</title><link href="http://localhost:4000/projects/ec2-instance-deep-learning/" rel="alternate" type="text/html" title="Setting up an EC2 instance for Deep Learning" /><published>2018-10-05T00:00:00+01:00</published><updated>2018-10-05T00:00:00+01:00</updated><id>http://localhost:4000/projects/ec2-instance-deep-learning</id><content type="html" xml:base="http://localhost:4000/projects/ec2-instance-deep-learning/">&lt;p&gt;A quick guide to firing up an instance for Deep Learning.&lt;/p&gt;
+
+&lt;h3 id=&quot;deep-learning-in-the-cloud&quot;&gt;Deep Learning in the Cloud&lt;/h3&gt;
+
+&lt;p&gt;Training and evaluating deep neural networks isn’t a walk in the park. It requires a lot of computation and can easily be too difficult to perform locally on only the CPU. I’ve recently being doing a course in ML and needed to be able to use something with a bit more oomph.&lt;/p&gt;
+
+&lt;p&gt;My laptop unfortunately doesn’t come equipped with an NVIDIA GPU and, although I could maybe build my own deep learning computer according to &lt;a href=&quot;https://medium.com/yanda/building-your-own-deep-learning-dream-machine-4f02ccdb0460&quot;&gt;this blog&lt;/a&gt;, I don’t think I’ll be doing this anytime soon.&lt;/p&gt;
+
+&lt;p&gt;AWS comes with something called Elastic Compute Cloud (EC2) which allows you to launch a virtual server (or instance) with GPUs. The smart people at Amazon make it easy for you to spin up an instance with a whole load of pre-defined dependencies - these are AMIs (Amazon Machine Images).&lt;/p&gt;
+
+&lt;h3 id=&quot;setting-up-the-instance&quot;&gt;Setting up the instance&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select EC2 from the bewildering list of services that AWS offers&lt;/li&gt;
+  &lt;li&gt;Select Launch instance&lt;/li&gt;
+  &lt;li&gt;Select Amazon Marketplace&lt;/li&gt;
+  &lt;li&gt;Search for &lt;code class=&quot;highlighter-rouge&quot;&gt;Deep Learning AMI with Source Code (CUDA 8, Ubuntu)&lt;/code&gt;. This contains all the environmental files and drivers requires to train on a GPU.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_marketplace.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select the instance type by filtering for GPU Compute and selecting &lt;code class=&quot;highlighter-rouge&quot;&gt;p2.xlarge&lt;/code&gt;. Review and Launch.&lt;/li&gt;
+  &lt;li&gt;You will next be prompted to download the key pair&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At this point the instance will start to be created and may take a few minutes to complete. You will also start to be charged for it.&lt;/p&gt;
+
+&lt;p&gt;There is one last step which enables access the Jupyter notebook. This requires configuring the AWS Security Group to allow access to port 8888.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_security_group.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;connecting-to-the-instance&quot;&gt;Connecting to the instance&lt;/h3&gt;
+
+&lt;p&gt;Connecting to the instance is simpler on a mac but I was using a windows laptop at this point. You can see how to connect using PuTTY &lt;a href=&quot;https://docs.aws.amazon.com/3AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This will open a terminal giving access to the instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/aws_ubuntu_terminal.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next bit of code is from the course but sets up the Jupyter notebook on the newly spun up instance:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Create config file for Jupyter notebook settings&lt;/span&gt;
+jupyter notebook --generate-config
+
+&lt;span class=&quot;c&quot;&gt;# Change the IP address config for the notebook&lt;/span&gt;
+ sed -ie &lt;span class=&quot;s2&quot;&gt;&quot;s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g&quot;&lt;/span&gt; ~/.jupyter/jupyter_notebook_config.py
+
+&lt;span class=&quot;c&quot;&gt;# Clone the GitHub repository&lt;/span&gt;
+git clone https://github.com/udacity/aind2-cnn.git
+
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;aind2-cnn
+
+&lt;span class=&quot;c&quot;&gt;# Install the requirements&lt;/span&gt;
+sudo python3 -m pip install -r requirements/requirements.txt
+
+&lt;span class=&quot;c&quot;&gt;# Start the Jupyter notebook instance&lt;/span&gt;
+jupyter notebook --ip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0.0.0 --no-browser&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;At this point you can try and access the Jupyter notebook from your web browser by copying the IP address  of the instance and the code from the terminal as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://X.X.X.X:8000/?token={output token in the terminal}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If all has gone to plan, the Jupyter notebook should appear and the code can be ran. There’s a lot more to explore here in terms of automation but it is cool to be able to spin up and instance and train a model in 5 minutes&lt;/p&gt;
+
+&lt;p&gt;To ensure you don’t get charged you will need to ensure you stop the instance and also delete any storage.&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A quick guide to firing up an instance for Deep Learning.</summary></entry><entry><title type="html">Gazer &amp;amp; Looker</title><link href="http://localhost:4000/projects/gazer/" rel="alternate" type="text/html" title="Gazer &amp; Looker" /><published>2018-06-24T00:00:00+01:00</published><updated>2018-06-24T00:00:00+01:00</updated><id>http://localhost:4000/projects/gazer</id><content type="html" xml:base="http://localhost:4000/projects/gazer/">&lt;p&gt;Playing around with a fun command line tool for Looker.&lt;/p&gt;
+
+&lt;h3 id=&quot;gazer&quot;&gt;Gazer&lt;/h3&gt;
+
+&lt;p&gt;This post is a simple outline of how I set up &lt;a href=&quot;https://github.com/deangelo-llooker/gzr&quot;&gt;Gazer&lt;/a&gt; - an open source command line tool for Looker. I am always looking for ways to automate my day and this tool allows for quickly getting the answer to the odd question I get.&lt;/p&gt;
+
+&lt;h3 id=&quot;installation-outline&quot;&gt;Installation Outline&lt;/h3&gt;
+
+&lt;p&gt;This isn’t a comprehensive guide to the installation and just shows the process I went through.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Installed rbenv to manage ruby envionrments
+    &lt;ul&gt;
+      &lt;li&gt;Installed required dependencies Homebrew&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Removed any references to RVM previously installed as rbenv and RVM are incompatible by:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ RVM implode&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Removed any reference in &lt;code class=&quot;highlighter-rouge&quot;&gt;bash_profile&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Restart to avoid any issues&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Installed ruby version 2.3.3. using rbenv&lt;/li&gt;
+  &lt;li&gt;Created a local file ‘Gazer’
+    * &lt;code class=&quot;highlighter-rouge&quot;&gt;cd Desktop/Gazer &amp;amp;&amp;amp; rbenv local 2.3.3&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Checked all working using &lt;code class=&quot;highlighter-rouge&quot;&gt;rbenv versions&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;$ /Desktop/Gazer&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Create .netrc file
+    &lt;ul&gt;
+      &lt;li&gt;cd ~ &amp;amp;&amp;amp; atom .netrc&lt;/li&gt;
+      &lt;li&gt;Added the following to the .netrc file:
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; machine &amp;lt;&amp;lt;looker instance&amp;gt;&amp;gt;.looker.com
+ login &amp;lt;&amp;lt;client ID&amp;gt;&amp;gt;
+ password &amp;lt;&amp;lt;Client Secret&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Restrict access to the .netrc file: &lt;code class=&quot;highlighter-rouge&quot;&gt;$ chmod 600.netrc&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;examples-commands&quot;&gt;Examples Commands&lt;/h3&gt;
+
+&lt;p&gt;If you fire up the terminal and fire up something like &lt;code class=&quot;highlighter-rouge&quot;&gt;gzr look cat 297 --host &amp;lt;&amp;lt;looker instance&amp;gt;&amp;gt;&lt;/code&gt; then you can quickly see the JSON return for the dashboard and quickly find out what you need to know.&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Playing around with a fun command line tool for Looker.</summary></entry><entry><title type="html">Getting started with Strava’s API using Node</title><link href="http://localhost:4000/projects/strava-node-api/" rel="alternate" type="text/html" title="Getting started with Strava's API using Node" /><published>2017-09-19T00:00:00+01:00</published><updated>2017-09-19T00:00:00+01:00</updated><id>http://localhost:4000/projects/strava-node-api</id><content type="html" xml:base="http://localhost:4000/projects/strava-node-api/">&lt;p&gt;Exploring Strava’s comprehensive API.&lt;/p&gt;
+
+&lt;p&gt;Strava V3 API is a publicly available interface allowing access to Strava’s dataset. A Strava API application only has access to certain user data without any authorization. In this first step I am going to explore how to get started and what data can be accessed without the user authorization.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;Access to the Strava API first requires creating an &lt;a href=&quot;https://developers.strava.com/&quot; target=&quot;blank&quot;&gt;application online&lt;/a&gt;. Here you can get your &lt;code&gt;access_token&lt;/code&gt; which allows for basic access to some of Strava’s API endpoints.&lt;/p&gt;
+
+&lt;p&gt;There’s a huge number of language libraries on offer here but I will be using the &lt;a href=&quot;https://github.com/ajsnapshots/node-strava-v3&quot; target=&quot;blank&quot;&gt; Node library&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create an application and make a note of the &lt;code&gt;access_token&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Open up the command prompt and make a new directory &lt;code&gt;mkdir strava-node-api &amp;amp;&amp;amp; cd strava-node-api&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;npm init&lt;/code&gt; and accept all defaults&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;mkdir data&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;copy the strava_config file to the data folder and update the &lt;code&gt;access_token&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Create an index.js file and add the code below before running &lt;code&gt;node index.js&lt;/code&gt; to see the output.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;basic-code&quot;&gt;Basic Code&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'strava-v3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athletes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;strava&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({},&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;listFollowers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;athlete_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To see the basic usage you can download the files from &lt;a href=&quot;https://github.com/morsonluke/strava-node-api&quot; target=&quot;blank&quot;&gt;here&lt;/a&gt; and just add your &lt;code&gt;access_token&lt;/code&gt; before running &lt;code&gt;node index.js&lt;/code&gt; and seeing the output in the terminal.&lt;/p&gt;
+
+&lt;p&gt;You can see the JSON output below. It’s interesting that you can see a range of information without any authorization. You can get information like gender, location and if the account is premium. Theoretically this information could be gathered for all of Strava’s user base.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;466459&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;resource_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'London'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'UK'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'United Kingdom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;sex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'M'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;premium&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2012-04-01T13:07:37Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;updated_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2017-10-06T16:03:08Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;badge_type_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;profile_medium&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;profile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;friend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;follower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'accepted'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
+  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Each response also contains the rate limit for the API. The default rate limit allows 600 requests every 15 minutes, with up to 30,000 requests per day. This seems like more than enough for the next step.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascrip&quot; data-lang=&quot;javascrip&quot;&gt;--&amp;gt; output of console.log(limits);
+  {shortTermUsage: 2,
+  shortTermLimit: 600,
+  longTermUsage: 2,
+  longTermLimit: 30000 }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>Luke Morson</name></author><summary type="html">Exploring Strava’s comprehensive API.</summary></entry><entry><title type="html">Weather Depicting Coat Hanger</title><link href="http://localhost:4000/projects/weather-depicting-coat-hanger/" rel="alternate" type="text/html" title="Weather Depicting Coat Hanger" /><published>2017-07-21T00:00:00+01:00</published><updated>2017-07-21T00:00:00+01:00</updated><id>http://localhost:4000/projects/weather-depicting-coat-hanger</id><content type="html" xml:base="http://localhost:4000/projects/weather-depicting-coat-hanger/">&lt;p&gt;Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…&lt;/p&gt;
 
 &lt;h2 id=&quot;the-idea&quot;&gt;The idea&lt;/h2&gt;
 
@@ -15,13 +196,13 @@
 
 &lt;h2 id=&quot;build&quot;&gt;Build&lt;/h2&gt;
 
-&lt;p&gt;The main body of the ‘coat hanger’ was made from a varnished peice of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.&lt;/p&gt;
+&lt;p&gt;The main body of the ‘coat hanger’ was made from a varnished piece of wood. We picked up some hooks from an antique store, and found a hygrometer and temperature dial which I planned to use to display the humidity and temperature. For each spot where a Polaroid picture would go, we drilled a hole through the wood in the middle for the wiring. Each polaroid then needs a frame to act as a light box which can be made using thin wood in a box shape. These were simply cut to size using a hacksaw and fixed with wood glue, varnished and then glued onto the wooden plank.&lt;/p&gt;
 
-&lt;p&gt;The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The polaroids could then be glued to the top of the wood.&lt;/p&gt;
+&lt;p&gt;The LED strips come with an adhesive backing and can just be attached onto either side of the frame and then wired up to the raspberry pi. The Polaroids could then be glued to the top of the wood.&lt;/p&gt;
 
 &lt;h2 id=&quot;raspberry-pi-setup&quot;&gt;Raspberry Pi Setup&lt;/h2&gt;
 
-&lt;p&gt;To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your wifi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.&lt;/p&gt;
+&lt;p&gt;To initially configure the raspberry pi you’ll need a mouse, keyboard, HDMI cable and monitor. (along with a mini HDMI to HDMI Adapter and USB OTG connector as the Pi Zero comes with micro USB and micro HDMI connectors) Once it’s connected to your WiFi you can have full headless access from your laptop using PuTTY for simple command line access and TightVNC for the full-blow GUI desktop experience.&lt;/p&gt;
 
 &lt;h2 id=&quot;electronics&quot;&gt;Electronics&lt;/h2&gt;
 
@@ -72,7 +253,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5&lt;/code&gt;&lt;/pre&gt;&l
 
 &lt;p&gt;The root of the folder of the web server is /var/www/html/. If you navigate to your Raspberry Pi IP address from another device on the network you should see the default page that comes with the installation.&lt;/p&gt;
 
-&lt;p&gt;The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual polaroids.&lt;/p&gt;
+&lt;p&gt;The web server component also allows for you to access the information from within your wifi network. I put together a quick table of the current weather information that you could quickly access from your phone along with a test interface that allowed for you to light up the individual Polaroids.&lt;/p&gt;
 
 &lt;div id=&quot;slider2&quot;&gt;
 	&lt;img src=&quot;/projects/img/wphm5.png&quot; /&gt;
@@ -176,7 +357,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5&lt;/code&gt;&lt;/pre&gt;&l
 
 &lt;h2 id=&quot;cron&quot;&gt;CRON&lt;/h2&gt;
 
-&lt;p&gt;As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root foler of my web server.&lt;/p&gt;
+&lt;p&gt;As the weather is constantly changing, we need to be able to execute the php script periodically to refresh the weather information. For this we can use cron. This simple PHP script was in a file called scroll.php in the root folder of my web server.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;//Check the following command works on the command line first to make sure the script runs
 /usr/bin/php /var/www/html/scroll.php
@@ -195,7 +376,7 @@ crontab -e
 
 &lt;h2 id=&quot;improvements&quot;&gt;Improvements&lt;/h2&gt;
 
-&lt;p&gt;In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.&lt;/p&gt;
+&lt;p&gt;In terms of the design, the wires and LED strips are somewhat visible in a few of the Polaroid frames so this design could be improved. The logic behind which Polaroids are displayed could also be improved. In addition to this there’s a whole load of other information which can be gathered from the API and used here. Information could be gathered about how the weather is going to develop over the day and if for example rain is expected at any point in the day you could have an LED light up red reminding you to take an umbrella. We could also display the current temperature using a servo and a temperature dial and a shed load of other things which I didn’t get around to.&lt;/p&gt;
 
 &lt;!--Create Ideal Image Slider--&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -234,4 +415,174 @@ var slider = new IdealImageSlider.Slider({
 });
 slider.start();
 
-&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…</summary></entry></feed>
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Using an open weather API and a raspberry pi zero to display the current weather by lighting up old Polaroids depicting different weather scenes…</summary></entry><entry><title type="html">Amazon Alexa on the C.H.I.P</title><link href="http://localhost:4000/projects/alexa-on-the-chip/" rel="alternate" type="text/html" title="Amazon Alexa on the C.H.I.P" /><published>2017-07-14T00:00:00+01:00</published><updated>2017-07-14T00:00:00+01:00</updated><id>http://localhost:4000/projects/alexa-on-the-chip</id><content type="html" xml:base="http://localhost:4000/projects/alexa-on-the-chip/">&lt;p&gt;Running Amazon Alexa on the C.H.I.P…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/CHIP2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-chip&quot;&gt;What is the C.H.I.P&lt;/h2&gt;
+
+&lt;p&gt;C.H.I.P is a $9 computer. It’s main advantage over other, similar computers, is that it has WiFi, bluetooth and 4GB of internal storage built in. The same company is currently using the C.H.I.P pro version on this really &lt;a href=&quot;https://getchip.com/pages/dashbot&quot; target=&quot;blank&quot;&gt;interesting project.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;required-for-this-project&quot;&gt;Required for this project&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;C.H.I.P&lt;/li&gt;
+  &lt;li&gt;HDMI “shield” for the C.H.I.P.&lt;/li&gt;
+  &lt;li&gt;Power supply with MicroUSB cable.&lt;/li&gt;
+  &lt;li&gt;HDMI cable, mouse and keyboard for initially connecting to the WiFi. After that you can use PuTTY and TightVNC to go headless.&lt;/li&gt;
+  &lt;li&gt;Small batter powered speaker&lt;/li&gt;
+  &lt;li&gt;USB microphone.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;setting-up-the-chip&quot;&gt;Setting up the C.H.I.P&lt;/h2&gt;
+
+&lt;p&gt;The C.H.I.P only comes with one USB port, and as I discovered, cannot handle much power from any peripherals. I didn’t have a powered USB hub to hand so was trying to switch between the mouse and the keyboard which made the C.H.I.P crash. I was able to plug in a mouse to the USB port and view the C.H.I.P on my TV using the HDMI shield. I then used a bluetooth keyboard to enable the WiFi by entering the password.&lt;/p&gt;
+
+&lt;p&gt;With the computer still attached to the TV, trying a simple &lt;code&gt;sudo apt-get update&lt;/code&gt; crashed it. It also seemed the C.H.I.P was not discoverable using PuTTY. In the end removing the HDMI shield allowed for me to connect using PuTTY.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;upgrade&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;tightvncserver&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;vncserver&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;you&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;you&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;can&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;VNC&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;password&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;registering-for-an-amazon-developer-account&quot;&gt;Registering for an Amazon Developer Account&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Firstly we need to know the IP address so go for &lt;code&gt;ip addr show wlan0&lt;/code&gt;, and make a note of the IP address.&lt;/li&gt;
+  &lt;li&gt;Create an amazon developer account at https://developer.amazon.com and go to the &lt;b&gt;Alexa&lt;/b&gt; tab and &lt;b&gt;Get Started for Alexa Voice Service&lt;/b&gt;.&lt;/li&gt;
+  &lt;li&gt;Register a device and enter a memorable &lt;b&gt;Device ID&lt;/b&gt; and &lt;b&gt;Display Name&lt;/b&gt;.&lt;/li&gt;
+  &lt;li&gt;Edit the &lt;b&gt;Security Profile&lt;/b&gt; and &lt;b&gt;Create New Profile&lt;/b&gt; and add a &lt;b&gt;Security Profile Description&lt;/b&gt;. Take a note of the &lt;b&gt;Security Profile ID&lt;/b&gt;, &lt;b&gt;Client ID&lt;/b&gt; and &lt;b&gt;Client Secret&lt;/b&gt; as they will be needed later.&lt;/li&gt;
+  &lt;li&gt;Next go to Web Settings and under Allowed Origins we need to add &lt;code&gt;http://localhost:5050&lt;/code&gt;. &lt;b&gt;Add Another&lt;/b&gt; and add &lt;code&gt;http://ip.address:5050&lt;/code&gt; but replace the IP address with that of your device. Do the same for &lt;b&gt;Allowed Return URLs&lt;/b&gt; adding &lt;code&gt;http://localhost:5050/code and then &lt;code&gt;http://ip.address:5050/code.&lt;/code&gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;installing-alexa-services&quot;&gt;Installing Alexa Services&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;apt-get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;github.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/opt&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//change&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;working&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;opt.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;https://github.com/alexa-pi/AlexaPi.git&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;./AlexaPi/src/scripts/setup.sh&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;here&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;chip&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Debian.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Next enter the Device ID, Security Profile Descriptions, Profile ID, Client ID and Client Secret &lt;b&gt;very carefully&lt;/b&gt;, any errors in copying them over could cause the script not to work.&lt;/p&gt;
+
+&lt;p&gt;Next it will ask you to authorize the device, which allows it to get the required auth token; this only needs to be done once. Using Firefox on the C.H.I.P navigate to http://localhost:5050 and you should see the login page from Amazon.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
+
+&lt;p&gt;The heavily lifting here is done by Amazon’s Alexa Voice Service (AVS). Your Amazon AVS credentials are stored in the configuration file config.yaml. The auth_web.py is then a simple web server to generate the refresh token via OAuth to your Amazon user account.&lt;/p&gt;
+
+&lt;p&gt;main.py is then the main AVS client which waits for the trigger word “Alexa”, or the button to be pressed. It records the audio and posts this to the AVS service using the requests library. The AVS then does some magic and sends back the response which is played back to you.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-pulseaudio&quot;&gt;Setting up PulseAudio&lt;/h2&gt;
+
+&lt;p&gt;PulseAudio is a s a proxy for your sound applications. It allows you to do advanced operations on your sound data as it passes between your application and your hardware.&lt;/p&gt;
+
+&lt;p&gt;There’s a few steps involved in setting this up, so rather than repeat it here, all the steps are &lt;a href=&quot;https://github.com/alexa-pi/AlexaPi/wiki/Audio-setup-&amp;amp;-debugging#pulseaudiohere&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;660&quot; height=&quot;350&quot; src=&quot;https://www.youtube.com/embed/cq_QLOaF1hU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;to-be-continuedpackaging-the-project&quot;&gt;To be continued…Packaging the Project&lt;/h2&gt;
+
+&lt;div id=&quot;slider&quot;&gt;
+	&lt;img src=&quot;/projects/img/radio.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker1.png&quot; /&gt;
+	&lt;img src=&quot;/projects/img/speaker2.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;!--Create Ideal Image Slider--&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider',
+	height: 500,
+	interval: 10000,
+	effect: 'fade'
+});
+slider.start();
+
+&lt;/script&gt;</content><author><name>Luke Morson</name></author><summary type="html">Running Amazon Alexa on the C.H.I.P…</summary></entry><entry><title type="html">Building a Prusa Mendel i2 3D Printer from scratch</title><link href="http://localhost:4000/projects/prusa-mendel-3D-printer/" rel="alternate" type="text/html" title="Building a Prusa Mendel i2 3D Printer from scratch" /><published>2017-07-01T00:00:00+01:00</published><updated>2017-07-01T00:00:00+01:00</updated><id>http://localhost:4000/projects/prusa-mendel-3D-printer</id><content type="html" xml:base="http://localhost:4000/projects/prusa-mendel-3D-printer/">&lt;p&gt;Things I learnt building a 3D printer from scratch…&lt;/p&gt;
+
+&lt;h2 id=&quot;why-not-just-buy-a-kit&quot;&gt;Why not just buy a kit?&lt;/h2&gt;
+
+&lt;p&gt;True, full 3D printer kits are becoming cheaper and more readily available.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.kickstarter.com/projects/101hero/101hero-the-world-first-us49-3d-printer&quot; target=&quot;blank&quot;&gt;101Hero&lt;/a&gt; was a recent Kickstarter project declaring itself to be the world’s most affordable 3D printer. These cheaper kits do come with some shortfalls, as you can read in &lt;a href=&quot;http://www.instructables.com/id/101hero-a-99-3D-Printer-an-Upgrade-Story-to-Make-I/&quot; target=&quot;blank&quot;&gt;this&lt;/a&gt; great upgrade story about the 101hero.&lt;/p&gt;
+
+&lt;p&gt;There are also a range of open source projects out there with all the information to build one from scratch. The main advantages to building one yourself are that you understand completely how it all works. It also seems like some of the cheaper kits out there sacrifice somewhat on precision.&lt;/p&gt;
+
+&lt;h2 id=&quot;prusa-medel-i2&quot;&gt;Prusa Medel i2&lt;/h2&gt;
+
+&lt;p&gt;The main reason I decided to build the Prusa Mendel i2, was due to the fact that there are a lot of great resources out there for helping you put it together. All the parts can easily got online of from a hardware store.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Prusa Mendel is controlled by an Arduino MEGA with a RepRap Arduino Mega Pololu shield or &lt;strong&gt;RAMPS&lt;/strong&gt;. The Pololu are the stepper motor controllers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/3DPrinter2.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Things I learnt building a 3D printer from scratch…</summary></entry><entry><title type="html">Fibonnaci Clock</title><link href="http://localhost:4000/projects/fibonnaci-clock/" rel="alternate" type="text/html" title="Fibonnaci Clock" /><published>2017-06-15T00:00:00+01:00</published><updated>2017-06-15T00:00:00+01:00</updated><id>http://localhost:4000/projects/fibonnaci-clock</id><content type="html" xml:base="http://localhost:4000/projects/fibonnaci-clock/">&lt;p&gt;This clock uses the Fibonacci sequence to display the time…&lt;/p&gt;
+
+&lt;p&gt;I still haven’t got around to writing this one up. But here’s the end result.&lt;/p&gt;
+
+&lt;h2 id=&quot;fibonnaci-clock&quot;&gt;Fibonnaci Clock&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/fibo4.png&quot; /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">This clock uses the Fibonacci sequence to display the time…</summary></entry><entry><title type="html">Building a site with Jekyll</title><link href="http://localhost:4000/projects/jekyll/" rel="alternate" type="text/html" title="Building a site with Jekyll" /><published>2017-06-08T00:00:00+01:00</published><updated>2017-06-08T00:00:00+01:00</updated><id>http://localhost:4000/projects/jekyll</id><content type="html" xml:base="http://localhost:4000/projects/jekyll/">&lt;p&gt;A short guide to getting started with Jekyll…&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Jekyll is a static site generator that is powered by Ruby. You lob in a bit of markdown, liquid, HTML, CSS and out comes a static site ready for deployment.&lt;/p&gt;
+
+&lt;p&gt;For a content-driven site like this, Jekyll is ideal. It is simple, lightweight, comes with a development server for testing and can be hosted for FREE on Github.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing Jekyll on Windows&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the ruby installer for &lt;a href=&quot;https://rubyinstaller.org/downloads/&quot; target=&quot;blank&quot;&gt; Windows&lt;/a&gt;. Ensure to add Ruby executables to the PATH option as part of the installer.&lt;/li&gt;
+  &lt;li&gt;Install the Ruby DevKit to match the version of Ruby installed. Enter a path for the file without spaces like C:\RubyDevKit&lt;/li&gt;
+  &lt;li&gt;Open the “command prompt” with Ruby.&lt;/li&gt;
+  &lt;li&gt;Initialize the DevKit and bind it to the Ruby installation and install Jekyll.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;Cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;C:\RubyDevKit&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;DevKit.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;dk.rb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Ruby&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;dk.rb&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyll.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//install&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;Jekyll&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Building a Jekyll Site&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can quickly build a basic Jekyll site and view it using the local server, which comes as part of Jekyll.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;err&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyllExample&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyllExample&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;serve&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Navigating to &lt;code&gt;http://localhost:4000&lt;/code&gt;, you can see the example site that Jekyll ships with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/Jekyll1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Rather than build something from scratch I decided to go with a &lt;a href=&quot;http://jekyllthemes.org/&quot; target=&quot;blank&quot;&gt;template&lt;/a&gt;. The template I am using was from &lt;a href=&quot;https://github.com/AkshayAgarwal007/Jekyll-Mono&quot; target=&quot;blank&quot;&gt; Askhay Agarwal.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Modifying an existing template allowed me to get the site up and running quickly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Adding to GitHub&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Your Jekyll site can be hosted for FREE on GitHub. GitHub Pages are public web pages that are freely hosted on Github’s &lt;code&gt;github.io&lt;/code&gt; domain. GitHub pages are actually powered by Jekyll.&lt;/p&gt;
+
+&lt;p&gt;To host the site at a project repository on GitHub pages you can define the “baseurl” as the “/repository-name/” in the config.yml file. When referencing JS or CSS files it needs to be done in the form:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;site.baseurl&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}/path/to/css.css&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Any internal links are then done like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;site.baseurl&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post.url&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;When running &lt;code&gt;jekyll serve&lt;/code&gt; you will notice that the site builds with the “/repository-name” as the baseurl. If you try and the view the site locally, it will likely fail. To test the site locally, you can serve the site with an empty string as the “baseurl” option as &lt;code&gt; jekyll serve  --baseurl ''&lt;/code&gt;. When deploying to GitHub pages the URLs will all start with the /repository-name-name and resolve correctly.&lt;/p&gt;
+
+&lt;p&gt;To actually sync the files with GitHub I used the GitHub Desktop app for Windows.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Click the &lt;b&gt;+&lt;/b&gt; icon and select the &lt;b&gt;Add&lt;/b&gt; option. Select the site folder from your Jekyll site and give it the name of your “/repository-name”.&lt;/li&gt;
+  &lt;li&gt;“Create &amp;amp; Add Repository” and make the first commit of the master.&lt;/li&gt;
+  &lt;li&gt;Create a branch called &lt;b&gt;gh-pages&lt;/b&gt; and commit and publish.&lt;/li&gt;
+  &lt;li&gt;The site is at {username}.github.io/{repo-name}.&lt;/li&gt;
+  &lt;li&gt;In the future any changes to the site just need to be committed and synced to update your website.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">A short guide to getting started with Jekyll…</summary></entry></feed>
