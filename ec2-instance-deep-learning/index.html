@@ -68,7 +68,7 @@
 
 <p>Training and evaluating deep neural networks isn’t a walk in the park. It requires a lot of computation and can easily be too difficult to perform locally on only the CPU. I’ve recently being doing a course in ML and needed to be able to use something with a bit more oomph.</p>
 
-<p>My laptop unfortunately doesn’t come equipped with an NVIDIA GPU and, although I could maybe build my own deep learning computer according to <a href="https://medium.com/yanda/building-your-own-deep-learning-dream-machine-4f02ccdb0460">this blog</a>, I don’t think I’ll be doing this anytime soon.</p>
+<p>My laptop unfortunately doesn’t come equipped with an NVIDIA GPU and although I could maybe build my own deep learning computer according to <a href="https://medium.com/yanda/building-your-own-deep-learning-dream-machine-4f02ccdb0460">this blog</a>, I don’t think I’ll be doing this anytime soon.</p>
 
 <p>AWS comes with something called Elastic Compute Cloud (EC2) which allows you to launch a virtual server (or instance) with GPUs. The smart people at Amazon make it easy for you to spin up an instance with a whole load of pre-defined dependencies - these are AMIs (Amazon Machine Images).</p>
 
@@ -121,7 +121,7 @@ sudo python3 -m pip install -r requirements/requirements.txt
 <span class="c"># Start the Jupyter notebook instance</span>
 jupyter notebook --ip<span class="o">=</span>0.0.0.0 --no-browser</code></pre></figure>
 
-<p>At this point you can try and access the Jupyter notebook from your web browser by copying the IP address  of the instance and the code from the terminal as <code class="highlighter-rouge">https://X.X.X.X:8000/?token={output token in the terminal}</code></p>
+<p>At this point you can try and access the Jupyter notebook from your web browser by copying the IP address  of the instance and the code from the terminal as <code class="highlighter-rouge">https://X.X.X.X:8888/?token={output token in the terminal}</code></p>
 
 <p>If all has gone to plan, the Jupyter notebook should appear and the code can be ran. There’s a lot more to explore here in terms of automation but it is cool to be able to spin up and instance and train a model in 5 minutes</p>
 
