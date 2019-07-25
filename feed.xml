@@ -1,4 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2019-01-29T18:58:30+00:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Machine Learning Engineer Nanodegree</title><link href="http://localhost:4000/projects/machine-learning-nanodegree/" rel="alternate" type="text/html" title="Machine Learning Engineer Nanodegree" /><published>2019-01-29T00:00:00+00:00</published><updated>2019-01-29T00:00:00+00:00</updated><id>http://localhost:4000/projects/machine-learning-nanodegree</id><content type="html" xml:base="http://localhost:4000/projects/machine-learning-nanodegree/">&lt;p&gt;What I learnt as part of a 6 month ML engineering nanodegree with Udacity.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/projects/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/projects/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/projects/" rel="alternate" type="text/html" /><updated>2019-07-25T06:44:36+01:00</updated><id>http://localhost:4000/projects//</id><title type="html">Luke Morson</title><entry><title type="html">Creating a Digital Ocean Droplet</title><link href="http://localhost:4000/projects/droplet/" rel="alternate" type="text/html" title="Creating a Digital Ocean Droplet" /><published>2019-07-25T00:00:00+01:00</published><updated>2019-07-25T00:00:00+01:00</updated><id>http://localhost:4000/projects/droplet</id><content type="html" xml:base="http://localhost:4000/projects/droplet/">&lt;p&gt;Create a droplet on Digital Ocean for learning Linux ‘n that&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-droplet&quot;&gt;Creating a Droplet&lt;/h3&gt;
+
+&lt;p&gt;Why even both with DigitalOcean? - Simple setup and transparant pricing. Plus $50 free to play around for a month!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create a CentOS 7.6 x64 Droplet on DigitalOcean - $5 month gives us 1GB / 1CPU, 25GB data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/img/droplet1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setup Authentication using an SSH key.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create a Keygen on your local machine
+ssh-keygen -t rsa -b 4096  -f ~/.ssh/id_digital_ocean
+# Get contents of public key
+cat id_digital_ocean.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Copy into the SSH key as part of the setup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;add-server-to-list-of-hosts&quot;&gt;Add Server to list of Hosts&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi ~/.ssh/config
+
+# Add this to the file 
+
+# Digital Ocean Droplet
+Host {sensible-name}
+  HostName {ip address}
+  User root
+  IdentityFile ~/.ssh/id_digital_ocean
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We should now be able to ssh in with ssh {sensible-name}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;create-a-new-user&quot;&gt;Create a &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-centos-7&quot;&gt;new user&lt;/a&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We are logged in as root but want to prevent logging in as root&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser guser
+# enter a new password
+passwd guser
+# add your new user to the wheel group to allow sudoing as root
+gpasswd -a demo wheel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add SSH configuration for the new user&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Get SSH key from local machine
+cat ~/.ssh/id_digital_ocean.pub
+
+# Login as the new user
+su guser
+mkdir .ssh
+chmod 700 .ssh
+# Add public key generated above 
+vi .ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add configuration to hosts file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi ~/.ssh/config
+
+# Add this to the file 
+
+# Digital Ocean Droplet guser
+Host {sensible-name-guser}
+  HostName {ip address}
+  User guser
+  IdentityFile ~/.ssh/id_digital_ocean
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configure-ssh-deamon&quot;&gt;Configure SSH Deamon&lt;/h3&gt;
+&lt;p&gt;Now that we have our new account, we can secure our server a little bit by modifying its SSH daemon configuration (the program that allows us to log in remotely) to disallow remote SSH access to the root account.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi /etc/ssh/sshd_config
+#PermitRootLogin yes --&amp;gt; PermitRootLogin no
+
+# Restart SSH
+systemctl reload sshd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now we can’t login as root&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ssh centos-digital-ocean2
+root@: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But we can login as out user and then sudo as root as required&lt;/p&gt;
+
+&lt;p&gt;Now we can play around with it to learn a number of concepts for the Linux Foundation course!&lt;/p&gt;</content><author><name>Luke Morson</name></author><summary type="html">Create a droplet on Digital Ocean for learning Linux ‘n that</summary></entry><entry><title type="html">Machine Learning Engineer Nanodegree</title><link href="http://localhost:4000/projects/machine-learning-nanodegree/" rel="alternate" type="text/html" title="Machine Learning Engineer Nanodegree" /><published>2019-01-29T00:00:00+00:00</published><updated>2019-01-29T00:00:00+00:00</updated><id>http://localhost:4000/projects/machine-learning-nanodegree</id><content type="html" xml:base="http://localhost:4000/projects/machine-learning-nanodegree/">&lt;p&gt;What I learnt as part of a 6 month ML engineering nanodegree with Udacity.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/projects/img/nano_cert.png&quot; /&gt;&lt;/p&gt;
 
